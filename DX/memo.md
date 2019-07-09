@@ -7,7 +7,7 @@
     [winOS(64)](https://sfdc.co/sfdx_cli_win64)  
     [UbuntuOS(x64)](https://sfdc.co/sfdx_cli_linux)  
     [UbuntuOS(x86)](https://sfdc.co/sfdx_cli_linux_x86)  
-    ```Console
+    ```cmd
     @rem windows console command
     C:\>sfdx --version
     sfdx-cli/7.14.0-bd96f098e0 win32-x64 node-v10.15.3
