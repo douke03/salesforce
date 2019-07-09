@@ -1,0 +1,7 @@
+.THIS {
+    background-color: silver;
+}
+.THIS .slds-form-element__label {
+    display : none;
+    visibility : hidden;
+}

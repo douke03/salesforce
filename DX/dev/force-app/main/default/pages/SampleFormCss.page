@@ -1,0 +1,33 @@
+<apex:page cache="true">
+    <style type="text/css" media="all">
+        .sheet {
+            width: 210mm;
+            height: 296mm; /* 1mm余裕をもたせる */
+            page-break-after: always;
+        }
+        table {
+            width:100%;
+            margin: auto;
+            border:none;
+            border: 1px solid black; /* 1pxが最小 */
+            border-collapse:collapse;
+            border-spacing:0px;
+            padding:0px;
+        }
+        td {
+            border: solid 1px;
+            padding: 0.5em;
+        }
+        @media screen {
+            body {
+            background: #eee;
+            }
+            .sheet {
+            background: white; /* 背景を白く */
+            box-shadow: 0 .5mm 2mm rgba(0,0,0,.3); /* ドロップシャドウ */
+            margin: 5mm;
+            }
+        }
+        @page { size: A4 }
+    </style>
+</apex:page>

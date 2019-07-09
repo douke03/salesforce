@@ -1,0 +1,28 @@
+<apex:page showHeader="false" standardStylesheets="false" sidebar="false" applyHtmlTag="false" applyBodyTag="false" docType="html-5.0">
+<html lang="ja">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <title>Sample</title>
+    <apex:include pageName="ResetCss"/>
+    <apex:include pageName="SampleFormCss"/>
+</head>
+<body>
+    <section class="sheet">
+        <table>
+            <tr>
+                <td>りんご</td>
+                <td>甘酸っぱい</td>
+                <td>おおむね赤</td>
+            </tr>
+            <tr>
+                <td>なつみかん</td>
+                <td>かなり酸っぱいと思う</td>
+                <td>たいてい黄色</td>
+            </tr>
+        </table>
+    </section>
+</body>
+</html>
+</apex:page>

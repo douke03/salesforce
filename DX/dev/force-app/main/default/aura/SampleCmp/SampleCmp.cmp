@@ -1,0 +1,29 @@
+<aura:component controller="NonController"
+                implements="forceCommunity:availableForAllPageTypes"
+                access="global" >
+    <!-- handlers-->
+    <aura:handler name="init" value="{!this}" action="{!c.init}"/>
+    <!-- attributes -->
+    <aura:attribute name="events" type="Event__c"/>
+    <aura:attribute name="eventId" type="Id"/>
+    <aura:attribute name="participants" type="Participant__c"/>
+    <aura:attribute name="columns" type="List"/>
+    <!-- lightning:card -->
+    <lightning:card variant="narrow" title="状況" iconName="standard:note" footer="">
+        <div class="slds-card__body_inner">
+            <lightning:select aura:id="select" name="select" label="" onchange="{!c.onChange}">
+                <aura:iteration items="{!v.events}" var="event">
+                    <option value="{!event.Id}" text="{!event.Name}"></option>
+                </aura:iteration>
+            </lightning:select>
+            <c:BlankLine/>
+            <div>
+                <lightning:datatable
+                        keyField="id"
+                        data="{!v.participants}"
+                        columns="{!v.columns}"
+                        hideCheckboxColumn="true"/>
+            </div>
+        </div>
+    </lightning:card>
+</aura:component>

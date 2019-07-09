@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Sum__c</fullName>
+    <externalId>false</externalId>
+    <label>合計値</label>
+    <summaryFilterItems>
+        <field>Child__c.Integer__c</field>
+        <operation>notEqual</operation>
+        <value/>
+    </summaryFilterItems>
+    <summaryForeignKey>Child__c.Parent__c</summaryForeignKey>
+    <summaryOperation>count</summaryOperation>
+    <trackTrending>false</trackTrending>
+    <type>Summary</type>
+</CustomField>

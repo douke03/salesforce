@@ -1,0 +1,17 @@
+<!--quickAdd.cmp-->
+<aura:component implements="force:lightningQuickActionWithoutHeader,force:hasRecordId">
+    <!-- attributes -->
+    <aura:attribute name="recordId" type="Id" />
+    <!-- handlers-->
+    <aura:handler name="init" value="{!this}" action="{!c.init}"/>
+    
+    <!-- Very simple addition -->
+    <!--<lightning:input type="number" name="myNumber" aura:id="num1" label="Number 1"/> +
+    <lightning:input type="number" name="myNumber" aura:id="num2" label="Number 2"/>-->
+ 	<p>処理中です</p>
+    <p>recordId: {!v.recordId}</p><!--
+    <br/>
+    <lightning:button label="Add" onclick="{!c.clickAdd}"/>
+-->
+    <lightning:button variant="brand" label="Brand action" title="Brand action" onclick="{! c.handleClick }" class="slds-m-left_x-small"/>
+</aura:component>

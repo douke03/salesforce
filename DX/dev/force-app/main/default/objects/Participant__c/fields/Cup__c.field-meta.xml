@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Cup__c</fullName>
+    <externalId>false</externalId>
+    <label>杯数</label>
+    <summarizedField>Record__c.Cup__c</summarizedField>
+    <summaryForeignKey>Record__c.ParticipantId__c</summaryForeignKey>
+    <summaryOperation>sum</summaryOperation>
+    <trackTrending>false</trackTrending>
+    <type>Summary</type>
+</CustomField>
