@@ -1,5 +1,3 @@
-public class TriggerHandler {
-    public interface Handler {
-        void handle();
-    }
+public virtual interface TriggerHandler {
+    void main();
 }

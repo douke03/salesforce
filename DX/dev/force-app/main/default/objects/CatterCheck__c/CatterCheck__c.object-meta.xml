@@ -129,7 +129,7 @@
     <actionOverrides>
         <actionName>View</actionName>
         <comment>Action override created by Lightning App Builder during activation.</comment>
-        <content>FlexiPage2</content>
+        <content>Catter2</content>
         <formFactor>Large</formFactor>
         <skipRecordTypeSelect>false</skipRecordTypeSelect>
         <type>Flexipage</type>
@@ -151,22 +151,17 @@
     <enableFeeds>false</enableFeeds>
     <enableHistory>false</enableHistory>
     <enableLicensing>false</enableLicensing>
-    <enableReports>false</enableReports>
+    <enableReports>true</enableReports>
     <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
-    <externalSharingModel>ControlledByParent</externalSharingModel>
-    <label>参加者</label>
+    <externalSharingModel>Private</externalSharingModel>
+    <label>Catter確認用</label>
     <nameField>
-        <label>参加者名</label>
+        <label>Catter確認用名</label>
         <type>Text</type>
     </nameField>
-    <searchLayouts>
-        <searchResultsAdditionalFields>EventId__c</searchResultsAdditionalFields>
-        <searchResultsAdditionalFields>Score__c</searchResultsAdditionalFields>
-        <searchResultsAdditionalFields>Cup__c</searchResultsAdditionalFields>
-        <searchResultsAdditionalFields>Payment__c</searchResultsAdditionalFields>
-    </searchLayouts>
-    <sharingModel>ControlledByParent</sharingModel>
+    <searchLayouts/>
+    <sharingModel>ReadWrite</sharingModel>
     <visibility>Public</visibility>
 </CustomObject>

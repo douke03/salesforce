@@ -4,6 +4,7 @@
     <externalId>false</externalId>
     <label>日付</label>
     <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
     <trackTrending>false</trackTrending>
     <type>Date</type>
 </CustomField>
