@@ -2,13 +2,13 @@ public virtual class BaseHandler extends Base implements TriggerHandler {
     public BaseHandler() {
     }
     public void handle(){
-        List<Object> newObjexts = Trigger.new;
-        List<Object> oldObjexts = Trigger.old;
+        List<Object> newObjects = Trigger.new;
+        List<Object> oldObjects = Trigger.old;
         if(Trigger.isBefore) {
             Info('isBefore');
             if(Trigger.isInsert) {
                 Info('isInsert');
-                processBeforeInsert(newObjexts);
+                processBeforeInsert(newObjects);
             }
             if(Trigger.isUpdate) {
                 Info('isUpdate');
@@ -30,7 +30,7 @@ public virtual class BaseHandler extends Base implements TriggerHandler {
             }
         }
     }
-    public void processBeforeInsert(List<Object> newObjexts){
+    public void processBeforeInsert(List<Object> newObjects){
         Debug('processBeforeInsert');
     }
 }
