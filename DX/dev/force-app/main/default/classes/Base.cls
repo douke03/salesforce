@@ -10,13 +10,15 @@ public virtual class Base {
     // カスタムメタデータに持たせた方がいいかも？
     private Boolean isDebug = true;
     private Boolean isInfo = true;
+    private Boolean isWarn = true;
+    private Boolean isError = true;
     /**
      * @description Const
      *      Set ClassName
      * @author Nakano Shoki
      */
     public Base() {
-        Info('Start: ' + className);
+        info('Start: ' + className);
     }
     /**
      * @description logger
@@ -25,9 +27,9 @@ public virtual class Base {
      * @return None
      * @author Nakano Shoki
      */
-    public void Debug(Object message) {
+    public void debug(Object message) {
         if(isDebug) {
-            System.debug(Logginglevel.DEBUG,assert + message);
+            System.debug(Logginglevel.DEBUG, assert + message);
         }
     }
     /**
@@ -37,9 +39,33 @@ public virtual class Base {
      * @return None
      * @author Nakano Shoki
      */
-    public void Info(Object message) {
+    public void info(Object message) {
         if(isInfo) {
-            System.debug(Logginglevel.INFO,assert + message);
+            System.debug(Logginglevel.INFO, assert + message);
+        }
+    }
+    /**
+     * @description logger
+     *      Logging level is WARN
+     * @param message
+     * @return None
+     * @author Nakano Shoki
+     */
+    public void warn(Object message) {
+        if(isWarn) {
+            System.debug(Logginglevel.WARN, assert + message);
+        }
+    }
+    /**
+     * @description logger
+     *      Logging level is ERROR
+     * @param message
+     * @return None
+     * @author Nakano Shoki
+     */
+    public void error(Object message) {
+        if(isError) {
+            System.debug(Logginglevel.ERROR, assert + message);
         }
     }
 }
