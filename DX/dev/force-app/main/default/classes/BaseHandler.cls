@@ -1,30 +1,36 @@
-public virtual class BaseHandler extends Base {
+public virtual class BaseHandler extends Base implements TriggerHandler {
     public BaseHandler() {
     }
     public void handle(){
+        List<Object> newObjexts = Trigger.new;
+        List<Object> oldObjexts = Trigger.old;
         if(Trigger.isBefore) {
-            Debug('isBefore');
+            Info('isBefore');
             if(Trigger.isInsert) {
-                Debug('isInsert');
+                Info('isInsert');
+                processBeforeInsert(newObjexts);
             }
             if(Trigger.isUpdate) {
-                Debug('isUpdate');
+                Info('isUpdate');
             }
             if(Trigger.isDelete) {
-                Debug('isDelete');
+                Info('isDelete');
             }
         }
         if(Trigger.isAfter) {
-            Debug('isAfter');
+            Info('isAfter');
             if(Trigger.isInsert) {
-                Debug('isInsert');
+                Info('isInsert');
             }
             if(Trigger.isUpdate) {
-                Debug('isUpdate');
+                Info('isUpdate');
             }
             if(Trigger.isDelete) {
-                Debug('isDelete');
+                Info('isDelete');
             }
         }
+    }
+    public void processBeforeInsert(List<Object> newObjexts){
+        Debug('processBeforeInsert');
     }
 }
