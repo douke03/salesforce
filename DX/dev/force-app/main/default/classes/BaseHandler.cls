@@ -15,6 +15,7 @@ public virtual class BaseHandler extends Base implements TriggerHandler {
             }
             if(Trigger.isDelete) {
                 Info('isDelete');
+                processBeforeDelete(newObjects, oldObjects);
             }
         }
         if(Trigger.isAfter) {
@@ -31,6 +32,16 @@ public virtual class BaseHandler extends Base implements TriggerHandler {
         }
     }
     public void processBeforeInsert(List<Object> newObjects){
-        Debug('processBeforeInsert');
+        for(Object newObject : newObjects) {
+            Debug(newObject);
+        }
+    }
+    public void processBeforeDelete(List<Object> newObjects, List<Object> oldObjects){
+        for(Object newObject : newObjects) {
+            Debug(newObject);
+        }
+        for(Object oldObject : oldObjects) {
+            Debug(oldObject);
+        }
     }
 }

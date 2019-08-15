@@ -13,7 +13,7 @@ public virtual class Base {
      * @author Nakano Shoki
      */
     public Base() {
-        Info('Class name is ' + className);
+        Info('Start: ' + className);
     }
     /**
      * @description logger
