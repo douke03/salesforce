@@ -5,12 +5,17 @@
  * @author Nakano Shoki
  */
 public virtual class Base {
+    @TestVisible
     private String className = String.valueOf(this).substring(0,String.valueOf(this).indexOf(':'));
     private String assert = '========== ';
     // カスタムメタデータに持たせた方がいいかも？
+    @TestVisible
     private Boolean isDebug = true;
-    private Boolean isInfo  = true;
-    private Boolean isWarn  = true;
+    @TestVisible
+    private Boolean isInfo = true;
+    @TestVisible
+    private Boolean isWarn = true;
+    @TestVisible
     private Boolean isError = true;
     /**
      * @description Const
