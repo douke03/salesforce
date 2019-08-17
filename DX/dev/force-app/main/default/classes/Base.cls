@@ -9,8 +9,8 @@ public virtual class Base {
     private String assert = '========== ';
     // カスタムメタデータに持たせた方がいいかも？
     private Boolean isDebug = true;
-    private Boolean isInfo = true;
-    private Boolean isWarn = true;
+    private Boolean isInfo  = true;
+    private Boolean isWarn  = true;
     private Boolean isError = true;
     /**
      * @description Const
