@@ -1,3 +1,4 @@
+<!-- KeepAccountSLV.page -->
 <!-- Keep account selected in list view -->
-<apex:page standardController="Account" extensions="AccountExtension" recordSetVar="leads" action="{!sample}">
+<apex:page standardController="Account" extensions="AccountExtension" recordSetVar="accounts" action="{!sample}">
 </apex:page>
