@@ -1,4 +1,6 @@
 <!-- KeepAccountSLV.page -->
 <!-- Keep account selected in list view -->
+<!-- クイックアクションを押下したタイミングで起動 -->
+<!-- 画面表示はなく、処理終了後に元のリストビューへ遷移する -->
 <apex:page standardController="Account" extensions="AccountExtension" recordSetVar="accounts" action="{!sample}">
 </apex:page>
