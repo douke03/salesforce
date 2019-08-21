@@ -18,12 +18,11 @@ public virtual class Base {
     @TestVisible
     private Boolean isError = true;
     /**
-     * @description Const
-     *      Set ClassName
+     * @description Constructor
      * @author Nakano Shoki
      */
     public Base() {
-        info('Start: ' + className);
+        info('Call: ' + className);
     }
     /**
      * @description logger

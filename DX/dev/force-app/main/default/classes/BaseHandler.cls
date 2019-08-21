@@ -3,7 +3,7 @@
  */
 public virtual class BaseHandler extends Base implements TriggerHandler {
     /**
-     * @description Const
+     * @description Constructor
      * @author Nakano Shoki
      */
     public BaseHandler() {
@@ -20,35 +20,40 @@ public virtual class BaseHandler extends Base implements TriggerHandler {
             List<Object> oldObjects = Trigger.old;
             if(Trigger.isBefore) {
                 if(Trigger.isInsert) {
-                    info('Process Before Insert');
+                    info('[TRIGGER] Process Before Insert');
                     processBeforeInsert(newObjects);
                 }
                 if(Trigger.isUpdate) {
-                    info('Process Before Update');
+                    info('[TRIGGER] Process Before Update');
                     processBeforeUpdate(newObjects, oldObjects);
                 }
                 if(Trigger.isDelete) {
-                    info('Process Before Delete');
+                    info('[TRIGGER] Process Before Delete');
                     processBeforeDelete(oldObjects);
                 }
             }
             if(Trigger.isAfter) {
                 if(Trigger.isInsert) {
-                    info('Process After Insert');
+                    info('[TRIGGER] Process After Insert');
                     processAfterInsert(newObjects);
                 }
                 if(Trigger.isUpdate) {
-                    info('Process After Update');
+                    info('[TRIGGER] Process After Update');
                     processAfterUpdate(newObjects, oldObjects);
                 }
                 if(Trigger.isDelete) {
-                    info('Process After Delete');
+                    info('[TRIGGER] Process After Delete');
                     processAfterDelete(oldObjects);
                 }
             }
+        } catch(DmlException e) {
+            error('DmlException');
+            error(e.getMessage());
         } catch(Exception e) {
-            error(e);
+            error('Exception');
+            error(e.getMessage());
         } finally {
+            debug('Finally');
             // none
         }
     }
@@ -58,7 +63,7 @@ public virtual class BaseHandler extends Base implements TriggerHandler {
      * @return None
      * @author Nakano Shoki
      */
-    public void processBeforeInsert(List<Object> newObjects){
+    public virtual void processBeforeInsert(List<Object> newObjects){
         for(Object newObject : newObjects) {
             debug(newObject);
         }
@@ -70,7 +75,7 @@ public virtual class BaseHandler extends Base implements TriggerHandler {
      * @return None
      * @author Nakano Shoki
      */
-    public void processBeforeUpdate(List<Object> newObjects, List<Object> oldObjects){
+    public virtual void processBeforeUpdate(List<Object> newObjects, List<Object> oldObjects){
         for(Object newObject : newObjects) {
             debug(newObject);
         }
@@ -84,7 +89,7 @@ public virtual class BaseHandler extends Base implements TriggerHandler {
      * @return None
      * @author Nakano Shoki
      */
-    public void processBeforeDelete(List<Object> oldObjects){
+    public virtual void processBeforeDelete(List<Object> oldObjects){
         for(Object oldObject : oldObjects) {
             debug(oldObject);
         }
@@ -95,7 +100,7 @@ public virtual class BaseHandler extends Base implements TriggerHandler {
      * @return None
      * @author Nakano Shoki
      */
-    public void processAfterInsert(List<Object> newObjects){
+    public virtual void processAfterInsert(List<Object> newObjects){
         for(Object newObject : newObjects) {
             debug(newObject);
         }
@@ -107,7 +112,7 @@ public virtual class BaseHandler extends Base implements TriggerHandler {
      * @return None
      * @author Nakano Shoki
      */
-    public void processAfterUpdate(List<Object> newObjects, List<Object> oldObjects){
+    public virtual void processAfterUpdate(List<Object> newObjects, List<Object> oldObjects){
         for(Object newObject : newObjects) {
             debug(newObject);
         }
@@ -121,7 +126,7 @@ public virtual class BaseHandler extends Base implements TriggerHandler {
      * @return None
      * @author Nakano Shoki
      */
-    public void processAfterDelete(List<Object> oldObjects){
+    public virtual void processAfterDelete(List<Object> oldObjects){
         for(Object oldObject : oldObjects) {
             debug(oldObject);
         }
