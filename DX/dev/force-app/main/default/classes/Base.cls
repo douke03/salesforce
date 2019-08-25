@@ -4,7 +4,7 @@
  *      継承して使ってね
  * @author Nakano Shoki
  */
-public virtual class Base {
+public with sharing virtual class Base {
     @TestVisible
     private String className = String.valueOf(this).substring(0,String.valueOf(this).indexOf(':'));
     private String assert = '========== ';

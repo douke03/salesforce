@@ -1,4 +1,4 @@
-public class AccountHandler extends BaseHandler {
+public with sharing class AccountHandler extends BaseHandler {
     public override void processBeforeInsert(List<Object> newObjects){
         for(Object newObject : newObjects) {
             debug('override');
