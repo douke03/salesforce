@@ -82,12 +82,12 @@ public with sharing virtual class Base {
         error('e.getTypeName(): ' + e.getTypeName());
         error('e.getStackTraceString(): ' + e.getStackTraceString());
         error('e.getMessage(): ' + e.getMessage());
-        ExceptionHandler__e eh = new ExceptionHandler__e(
+        ExceptionNotification__e en = new ExceptionNotification__e(
             ExecutionUserID__c = UserInfo.getUserId(),
             TypeName__c        = e.getTypeName(),
             StackTrace__c      = e.getStackTraceString(),
             Message__c         = e.getMessage()
         );
-        Database.SaveResult sr = EventBus.publish(eh);
+        Database.SaveResult sr = EventBus.publish(en);
     }
 }
