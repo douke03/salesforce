@@ -1,5 +1,5 @@
 /**
- * Exception Handler Handler
+ * Exception Notification Handler
  * @author Nakano Shoki
  */
 public without sharing class ExceptionNotificationHandler extends BaseHandler {
