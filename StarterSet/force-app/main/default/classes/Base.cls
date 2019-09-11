@@ -1,7 +1,5 @@
 /**
  * Base for all classes
- *      基本的な機能を盛り込んだクラス
- *      継承して使ってね
  * @author Nakano Shoki
  */
 public with sharing virtual class Base {
@@ -74,7 +72,7 @@ public with sharing virtual class Base {
     }
     /**
      * @description Exception Handler
-     *      Output Exception
+     *      Insert Plattform Event
      * @param e
      * @return None
      * @author Nakano Shoki
