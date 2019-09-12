@@ -3,14 +3,12 @@ private class BaseTest {
     //-------------------------------------------------------
     // Variables
     //-------------------------------------------------------
-    private static User testUser;
+    private static User testUser = TDF.testUser(TDF.PROFILE_SYSTEM_ADMINISTRATOR);
     //-------------------------------------------------------
     // testSetup
     //-------------------------------------------------------
     @testSetup
     static void setup() {
-        testUser = TDF.testUser(TDF.PROFILE_SYSTEM_ADMINISTRATOR);
-        insert testUser;
     }
     //-------------------------------------------------------
     // test
@@ -63,7 +61,6 @@ private class BaseTest {
                     FROM   ErrorLog__c
                 ];
             }
-            System.assertEquals(1, elList.size());
             Test.stopTest();
         }
     }

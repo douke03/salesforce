@@ -1,7 +1,7 @@
 /**
  * @author Nakano Shoki
  */
-public without sharing class DeletingErrorLogProcessing extends BaseAsyncJob implements Database.Batchable<sObject> {
+public without sharing class DeletingErrorLogProcessing extends BaseAsyncJob implements DeletingErrorLog.SchedulableExecute, Database.Batchable<sObject> {
     //-------------------------------------------------------
     // Variables & Constants
     //-------------------------------------------------------
@@ -19,10 +19,11 @@ public without sharing class DeletingErrorLogProcessing extends BaseAsyncJob imp
     // Batch
     //-------------------------------------------------------
     public Database.QueryLocator start(Database.BatchableContext bc) {
-        Date baseDateToDelete = date.today().addMonths(-MONTH_TO_KEEP_LOG);
+        Date d = date.today().addMonths(-MONTH_TO_KEEP_LOG);
+        Datetime baseDateToDelete = Datetime.newInstance(d.year(), d.month(), d.day());
         String query = ' SELECT Id'
                      + ' FROM   ErrorLog__c'
-                     + ' WHERE  CreatedDate =< ' + String.valueOf(baseDateToDelete);
+                     + ' WHERE  CreatedDate <= ' + baseDateToDelete.format('yyyy-MM-dd\'T\'HH:mm:ss.000\'Z\'');
         debug('query : ' + query);
         return Database.getQueryLocator(query);
     }

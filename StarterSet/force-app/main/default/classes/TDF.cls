@@ -41,10 +41,10 @@ public class TDF {
             LIMIT  1
         ];
         return new user(
-            UserName          = pf.Name + '_test@dummydomain.com',
-            Email             = pf.Name + '_test@dummydomain.com',
-            LastName          = pf.Name + '_test',
-            Alias             = pf.Name + '_test',
+            UserName          = 'test@dummydomain.com',
+            Email             = 'test@dummydomain.com',
+            LastName          = 'test',
+            Alias             = 'test',
             TimeZoneSidKey    = 'Asia/Tokyo',
             LocaleSidKey      = 'ja_JP',
             EmailEncodingKey  = 'UTF-8',
