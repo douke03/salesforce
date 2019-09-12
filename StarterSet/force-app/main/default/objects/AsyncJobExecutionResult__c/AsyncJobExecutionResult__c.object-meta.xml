@@ -143,8 +143,6 @@
     <allowInChatterGroups>true</allowInChatterGroups>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
-    <description>処理中で発生したExceptionのログを保持するためのクラス。
-ExceptionNotification(プラットフォームイベント)のTrigger処理によって作成される。</description>
     <enableActivities>true</enableActivities>
     <enableBulkApi>true</enableBulkApi>
     <enableFeeds>false</enableFeeds>
@@ -154,10 +152,10 @@ ExceptionNotification(プラットフォームイベント)のTrigger処理に�
     <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
-    <label>ErrorLog</label>
+    <label>AsyncJobExecutionResult</label>
     <nameField>
-        <displayFormat>{0000000000}</displayFormat>
-        <label>ErrorLog</label>
+        <displayFormat>{000000000}</displayFormat>
+        <label>AsyncJobExecutionResult</label>
         <type>AutoNumber</type>
     </nameField>
     <searchLayouts/>
