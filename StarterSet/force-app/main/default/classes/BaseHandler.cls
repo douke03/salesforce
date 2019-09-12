@@ -47,12 +47,8 @@ public with sharing virtual class BaseHandler extends Base implements TriggerHan
                     processAfterDelete(oldObjects);
                 }
             }
-        } catch(DmlException e) {
-            error('DmlException');
-            error(e.getMessage());
         } catch(Exception e) {
-            error('Exception');
-            error(e.getMessage());
+            exceptionHandler(e);
         } finally {
             debug('Finally');
             // none
