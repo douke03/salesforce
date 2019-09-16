@@ -1,8 +1,13 @@
 /**
- * Exception Notification Handler
+ * Exception notification handler
  * @author Nakano Shoki
  */
 public without sharing class ExceptionNotificationHandler extends BaseHandler {
+    /**
+     * @description After insert
+     *      Save as an ErrorLog__c when an ExceptionNotification__e is created.
+     * @author Nakano Shoki
+     */
     public override void processAfterInsert(List<Object> newObjects){
         List<ErrorLog__c> elList = new List<ErrorLog__c>();
         for(Object newObject : newObjects) {

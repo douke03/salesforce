@@ -3,9 +3,11 @@
  * @author Nakano Shoki
  */
 public with sharing virtual class Base {
-    @TestVisible
+    //-------------------------------------------------------
+    // Variables & Constants
+    //-------------------------------------------------------
     private String className = String.valueOf(this).substring(0,String.valueOf(this).indexOf(':'));
-    private String assert = '========== ';
+    private String assert = '======== ';
     // カスタムメタデータに持たせた方がいいかも？
     @TestVisible
     private Boolean isDebug = true;
@@ -15,18 +17,17 @@ public with sharing virtual class Base {
     private Boolean isWarn = true;
     @TestVisible
     private Boolean isError = true;
-    /**
-     * @description Constructor
-     * @author Nakano Shoki
-     */
+
     public Base() {
         info('Call: ' + className);
     }
+    //-------------------------------------------------------
+    // Processing part
+    //-------------------------------------------------------
     /**
-     * @description logger
-     *      Logging level is DEBUG
-     * @param message
-     * @return None
+     * @description logger(level is DEBUG)
+     *      This process outputs the received value.
+     * @param Object
      * @author Nakano Shoki
      */
     public void debug(Object message) {
@@ -35,10 +36,9 @@ public with sharing virtual class Base {
         }
     }
     /**
-     * @description logger
-     *      Logging level is INFO
-     * @param message
-     * @return None
+     * @description logger(level is INFO)
+     *      This process outputs the received value.
+     * @param Object
      * @author Nakano Shoki
      */
     public void info(Object message) {
@@ -47,10 +47,9 @@ public with sharing virtual class Base {
         }
     }
     /**
-     * @description logger
-     *      Logging level is WARN
-     * @param message
-     * @return None
+     * @description logger(level is WARN)
+     *      This process outputs the received value.
+     * @param Object
      * @author Nakano Shoki
      */
     public void warn(Object message) {
@@ -59,10 +58,9 @@ public with sharing virtual class Base {
         }
     }
     /**
-     * @description logger
-     *      Logging level is ERROR
-     * @param message
-     * @return None
+     * @description logger(level is ERROR)
+     *      This process outputs the received value.
+     * @param Object
      * @author Nakano Shoki
      */
     public void error(Object message) {
@@ -72,12 +70,13 @@ public with sharing virtual class Base {
     }
     /**
      * @description Exception Handler
-     *      Insert Plattform Event
-     * @param e
-     * @return None
+     *      This process saves the received exception in a platform event.
+     *      And returns the success or failure of the saves process.
+     * @param Exception
+     * @return Boolean
      * @author Nakano Shoki
      */
-    public void exceptionHandler(Exception e) {
+    public Boolean exceptionHandler(Exception e) {
         error('e.getCause(): ' + e.getCause());
         error('e.getTypeName(): ' + e.getTypeName());
         error('e.getStackTraceString(): ' + e.getStackTraceString());
@@ -89,5 +88,6 @@ public with sharing virtual class Base {
             Message__c         = e.getMessage()
         );
         Database.SaveResult sr = EventBus.publish(en);
+        return sr.isSuccess();
     }
 }

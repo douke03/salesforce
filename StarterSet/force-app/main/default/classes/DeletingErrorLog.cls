@@ -1,5 +1,5 @@
 /**
- * Deleting Error Log
+ * Class for schedule registration
  * @author Nakano Shoki
  */
 global with sharing class DeletingErrorLog Implements Schedulable {

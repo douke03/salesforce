@@ -1,17 +1,15 @@
 @isTest(SeeAllData=false)
 private class BaseTest {
     //-------------------------------------------------------
-    // Variables
+    // Variables & Setup
     //-------------------------------------------------------
     private static User testUser = TDF.testUser(TDF.PROFILE_SYSTEM_ADMINISTRATOR);
-    //-------------------------------------------------------
-    // testSetup
-    //-------------------------------------------------------
+
     @testSetup
     static void setup() {
     }
     //-------------------------------------------------------
-    // test
+    // Testing part
     //-------------------------------------------------------
     @isTest
     static void debugT01(){
@@ -47,21 +45,18 @@ private class BaseTest {
     }
     @isTest
     static void exceptionHandlerT01(){
+        Boolean isSuccess = false;
         System.runAs(testUser) {
             Test.startTest();
-            List<ErrorLog__c> elList = new List<ErrorLog__c>();
             Try {
                 Account a = new Account();
                 insert a;
             } catch(Exception e) {
                 Base base = new Base();
-                base.exceptionHandler(e);
-                elList = [
-                    SELECT Id
-                    FROM   ErrorLog__c
-                ];
+                isSuccess = base.exceptionHandler(e);
             }
             Test.stopTest();
         }
+        System.assert(true, isSuccess);
     }
 }

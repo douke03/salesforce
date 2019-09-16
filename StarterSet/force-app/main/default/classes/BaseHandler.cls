@@ -3,16 +3,17 @@
  * @author Nakano Shoki
  */
 public with sharing virtual class BaseHandler extends Base implements TriggerHandler {
-    /**
-     * @description Constructor
-     * @author Nakano Shoki
-     */
+    //-------------------------------------------------------
+    // Variables & Constants
+    //-------------------------------------------------------
     public BaseHandler() {
     }
+    //-------------------------------------------------------
+    // Processing part
+    //-------------------------------------------------------
     /**
-     * @description Responsible for allocating processing
-     * @param None
-     * @return None
+     * @description Trigger processing handler
+     *      All Trigger processes implemented according to the template go through this process.
      * @author Nakano Shoki
      */
     public void handle(){
@@ -50,14 +51,13 @@ public with sharing virtual class BaseHandler extends Base implements TriggerHan
         } catch(Exception e) {
             exceptionHandler(e);
         } finally {
-            debug('Finally');
             // none
         }
     }
     /**
      * @description Process before insert
+     *      If implement BeforeInsert process, must override this process.
      * @param newObjects
-     * @return None
      * @author Nakano Shoki
      */
     public virtual void processBeforeInsert(List<Object> newObjects){
@@ -67,9 +67,9 @@ public with sharing virtual class BaseHandler extends Base implements TriggerHan
     }
     /**
      * @description Process before update
+     *      If implement BeforeUpdate process, must override this process.
      * @param newObjects
      * @param oldObjects
-     * @return None
      * @author Nakano Shoki
      */
     public virtual void processBeforeUpdate(List<Object> newObjects, List<Object> oldObjects){
@@ -82,8 +82,8 @@ public with sharing virtual class BaseHandler extends Base implements TriggerHan
     }
     /**
      * @description Process before delete
+     *      If implement BeforeDelete process, must override this process.
      * @param oldObjects
-     * @return None
      * @author Nakano Shoki
      */
     public virtual void processBeforeDelete(List<Object> oldObjects){
@@ -93,8 +93,8 @@ public with sharing virtual class BaseHandler extends Base implements TriggerHan
     }
     /**
      * @description Process after insert
+     *      If implement AfterInsert process, must override this process.
      * @param newObjects
-     * @return None
      * @author Nakano Shoki
      */
     public virtual void processAfterInsert(List<Object> newObjects){
@@ -104,9 +104,9 @@ public with sharing virtual class BaseHandler extends Base implements TriggerHan
     }
     /**
      * @description Process after update
+     *      If implement AfterUpdate process, must override this process.
      * @param newObjects
      * @param oldObjects
-     * @return None
      * @author Nakano Shoki
      */
     public virtual void processAfterUpdate(List<Object> newObjects, List<Object> oldObjects){
@@ -119,8 +119,8 @@ public with sharing virtual class BaseHandler extends Base implements TriggerHan
     }
     /**
      * @description Process after delete
+     *      If implement AfterDelete process, must override this process.
      * @param oldObjects
-     * @return None
      * @author Nakano Shoki
      */
     public virtual void processAfterDelete(List<Object> oldObjects){
