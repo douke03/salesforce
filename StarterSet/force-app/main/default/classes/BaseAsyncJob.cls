@@ -20,7 +20,7 @@ public with sharing virtual class BaseAsyncJob extends Base implements Database.
      * @author Nakano Shoki
      */
     public Boolean isSuccessfulCompletion(ID jobId) {
-        Boolean isSuccess = true;
+        Boolean isSuccess = false;
         AsyncApexJob apexJob = [
             SELECT JobType,
                    Status,
@@ -39,11 +39,9 @@ public with sharing virtual class BaseAsyncJob extends Base implements Database.
             FROM   ApexClass
             WHERE  ID = :apexJob.ApexClassID
         ];
-        if(apexJob.Status != JOB_STATUS_COMPLETED) {
-            isSuccess = false;
-        } else {
-            if(apexJob.TotalJobItems != cntSuccessfulCompletion) {
-                isSuccess = false;
+        if(apexJob.Status == JOB_STATUS_COMPLETED) {
+            if(apexJob.NumberOfErrors == 0) {
+                isSuccess = true;
             }
         }
         info('');
