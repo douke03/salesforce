@@ -4,9 +4,9 @@
  */
 public with sharing virtual class BaseAsyncJob extends Base implements Database.Stateful {
     //-------------------------------------------------------
-    // Variables & Constants
+    // CustomException & Variables
     //-------------------------------------------------------
-    public Integer cntSuccessfulCompletion = 0;
+    public class AsyncJobException extends Exception {}
     private final String JOB_STATUS_COMPLETED = 'Completed';
     //-------------------------------------------------------
     // Processing part
@@ -33,6 +33,12 @@ public with sharing virtual class BaseAsyncJob extends Base implements Database.
             FROM   AsyncApexJob
             WHERE  Id = :jobId
         ];
+        ApexClass ac = [
+            SELECT Id,
+                   Name
+            FROM   ApexClass
+            WHERE  ID = :apexJob.ApexClassID
+        ];
         if(apexJob.Status != JOB_STATUS_COMPLETED) {
             isSuccess = false;
         } else {
@@ -44,7 +50,7 @@ public with sharing virtual class BaseAsyncJob extends Base implements Database.
         info('JobType : '  + apexJob.JobType);
         info('Status : '  + apexJob.Status);
         info('CompletedDate : '  + apexJob.CompletedDate);
-        info('ApexClassID : '  + apexJob.ApexClassID);
+        info('ApexClassName : '  + ac.Name);
         info('MethodName : '  + apexJob.MethodName);
         info('JobItemsProcessed : '  + apexJob.JobItemsProcessed);
         info('TotalJobItems : '  + apexJob.TotalJobItems);
