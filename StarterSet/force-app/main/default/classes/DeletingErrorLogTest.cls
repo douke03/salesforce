@@ -20,7 +20,7 @@ private class DeletingErrorLogTest {
         Test.stopTest();
     }
     @isTest
-    static void deletingErrorLogeEecuteT01(){
+    static void deletingErrorLogProcessingT01(){
         ErrorLog__c el = new ErrorLog__c();
         insert el;
         Test.startTest();
