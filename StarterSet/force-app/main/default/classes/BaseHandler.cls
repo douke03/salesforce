@@ -6,7 +6,23 @@ public with sharing virtual class BaseHandler extends Base implements TriggerHan
     //-------------------------------------------------------
     // Variables & Constants
     //-------------------------------------------------------
+    private Boolean isActiveTrigger = true;
     public BaseHandler() {
+        List<ActiveTriggerSetting__mdt> atsList = [
+            SELECT Id,
+                   DeveloperName,
+                   MasterLabel,
+                   isActive__c
+            FROM   ActiveTriggerSetting__mdt
+            WHERE  MasterLabel = 'All'
+               OR  MasterLabel = :className
+        ];
+        for(ActiveTriggerSetting__mdt ats : atsList) {
+            if(!ats.isActive__c) {
+                isActiveTrigger = false;
+                break;
+            }
+        }
     }
     //-------------------------------------------------------
     // Processing part
@@ -17,41 +33,45 @@ public with sharing virtual class BaseHandler extends Base implements TriggerHan
      * @author Nakano Shoki
      */
     public void handle(){
-        try {
-            List<Object> newObjects = Trigger.new;
-            List<Object> oldObjects = Trigger.old;
-            if(Trigger.isBefore) {
-                if(Trigger.isInsert) {
-                    info('[TRIGGER] Process Before Insert');
-                    processBeforeInsert(newObjects);
+        if(isActiveTrigger) {
+            try {
+                List<Object> newObjects = Trigger.new;
+                List<Object> oldObjects = Trigger.old;
+                if(Trigger.isBefore) {
+                    if(Trigger.isInsert) {
+                        info('[TRIGGER] Process Before Insert');
+                        processBeforeInsert(newObjects);
+                    }
+                    if(Trigger.isUpdate) {
+                        info('[TRIGGER] Process Before Update');
+                        processBeforeUpdate(newObjects, oldObjects);
+                    }
+                    if(Trigger.isDelete) {
+                        info('[TRIGGER] Process Before Delete');
+                        processBeforeDelete(oldObjects);
+                    }
                 }
-                if(Trigger.isUpdate) {
-                    info('[TRIGGER] Process Before Update');
-                    processBeforeUpdate(newObjects, oldObjects);
+                if(Trigger.isAfter) {
+                    if(Trigger.isInsert) {
+                        info('[TRIGGER] Process After Insert');
+                        processAfterInsert(newObjects);
+                    }
+                    if(Trigger.isUpdate) {
+                        info('[TRIGGER] Process After Update');
+                        processAfterUpdate(newObjects, oldObjects);
+                    }
+                    if(Trigger.isDelete) {
+                        info('[TRIGGER] Process After Delete');
+                        processAfterDelete(oldObjects);
+                    }
                 }
-                if(Trigger.isDelete) {
-                    info('[TRIGGER] Process Before Delete');
-                    processBeforeDelete(oldObjects);
-                }
+            } catch(Exception e) {
+                exceptionHandler(e);
+            } finally {
+                // none
             }
-            if(Trigger.isAfter) {
-                if(Trigger.isInsert) {
-                    info('[TRIGGER] Process After Insert');
-                    processAfterInsert(newObjects);
-                }
-                if(Trigger.isUpdate) {
-                    info('[TRIGGER] Process After Update');
-                    processAfterUpdate(newObjects, oldObjects);
-                }
-                if(Trigger.isDelete) {
-                    info('[TRIGGER] Process After Delete');
-                    processAfterDelete(oldObjects);
-                }
-            }
-        } catch(Exception e) {
-            exceptionHandler(e);
-        } finally {
-            // none
+        } else {
+            info(className + 'did not work because ActiveTriggerSetting is false.');
         }
     }
     /**

@@ -6,7 +6,7 @@ public with sharing virtual class Base {
     //-------------------------------------------------------
     // Variables & Constants
     //-------------------------------------------------------
-    private String className = String.valueOf(this).substring(0,String.valueOf(this).indexOf(':'));
+    public String className = String.valueOf(this).substring(0,String.valueOf(this).indexOf(':'));
     private String assert = '======== ';
     // カスタムメタデータに持たせた方がいいかも？
     @TestVisible
@@ -70,17 +70,26 @@ public with sharing virtual class Base {
     }
     /**
      * @description Exception Handler
+     *      This process is a controller class for exception handling.
+     * @param Exception
+     * @author Nakano Shoki
+     */
+    public void exceptionHandler(Exception e) {
+        error('e.getCause(): ' + e.getCause());
+        error('e.getTypeName(): ' + e.getTypeName());
+        error('e.getStackTraceString(): ' + e.getStackTraceString());
+        error('e.getMessage(): ' + e.getMessage());
+        saveExceptionLogRecord(e);
+    }
+    /**
+     * @description Save Exception Info
      *      This process saves the received exception in a platform event.
      *      And returns the success or failure of the saves process.
      * @param Exception
      * @return Boolean
      * @author Nakano Shoki
      */
-    public Boolean exceptionHandler(Exception e) {
-        error('e.getCause(): ' + e.getCause());
-        error('e.getTypeName(): ' + e.getTypeName());
-        error('e.getStackTraceString(): ' + e.getStackTraceString());
-        error('e.getMessage(): ' + e.getMessage());
+    public Boolean saveExceptionLogRecord(Exception e) {
         ExceptionNotification__e en = new ExceptionNotification__e(
             ExecutionUserID__c = UserInfo.getUserId(),
             TypeName__c        = e.getTypeName(),
