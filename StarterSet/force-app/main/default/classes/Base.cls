@@ -8,18 +8,35 @@ public with sharing virtual class Base {
     //-------------------------------------------------------
     public String className = String.valueOf(this).substring(0,String.valueOf(this).indexOf(':'));
     private String assert = '======== ';
-    // カスタムメタデータに持たせた方がいいかも？
     @TestVisible
-    private Boolean isDebug = true;
+    private Boolean isDebug = false;
     @TestVisible
-    private Boolean isInfo = true;
+    private Boolean isInfo  = false;
     @TestVisible
-    private Boolean isWarn = true;
+    private Boolean isWarn  = false;
     @TestVisible
-    private Boolean isError = true;
+    private Boolean isError = false;
 
     public Base() {
         info('Call: ' + className);
+        List<ActiveSetting__mdt> activeSetttingList = [
+            SELECT Id,
+                   DeveloperName,
+                   isActive__c
+            FROM   ActiveSetting__mdt
+            WHERE  MasterLabel Like 'L_%'
+        ];
+        for(ActiveSetting__mdt activeSetting : activeSetttingList) {
+            switch on activeSetting.DeveloperName {
+                when 'L_Debug' {isDebug = activeSetting.isActive__c;}
+                when 'L_Info'  {isInfo  = activeSetting.isActive__c;}
+                when 'L_Warn'  {isWarn  = activeSetting.isActive__c;}
+                when 'L_Error' {isError = activeSetting.isActive__c;}
+                when else {
+                    info(activeSetting.DeveloperName);
+                }
+            }
+        }
     }
     //-------------------------------------------------------
     // Processing part

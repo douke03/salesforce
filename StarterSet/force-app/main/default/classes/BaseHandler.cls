@@ -12,7 +12,6 @@ public with sharing virtual class BaseHandler extends Base implements TriggerHan
         List<ActiveSetting__mdt> activeSetttingList = [
             SELECT Id,
                    DeveloperName,
-                   MasterLabel,
                    isActive__c
             FROM   ActiveSetting__mdt
             WHERE  MasterLabel = 'T_All'
