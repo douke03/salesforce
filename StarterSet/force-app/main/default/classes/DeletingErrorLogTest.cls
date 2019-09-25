@@ -21,11 +21,14 @@ private class DeletingErrorLogTest {
     }
     @isTest
     static void deletingErrorLogProcessingT01(){
+        DeletingErrorLogProcessing batchable = new DeletingErrorLogProcessing();
         ErrorLog__c el = new ErrorLog__c();
         insert el;
+        Date d = date.today().addMonths(- batchable.MONTH_TO_KEEP_LOG);
+        Datetime baseDateToDelete = Datetime.newInstance(d.year(), d.month(), d.day());
+        Test.setCreatedDate(el.Id, baseDateToDelete);
         Test.startTest();
         System.runAs(testUser) {
-            DeletingErrorLogProcessing batchable = new DeletingErrorLogProcessing();
             Database.executeBatch(batchable);
         }
         Test.stopTest();

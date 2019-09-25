@@ -7,7 +7,26 @@ public with sharing virtual class BaseAsyncJob extends Base implements Database.
     // CustomException & Variables
     //-------------------------------------------------------
     public class AsyncJobException extends Exception {}
+    public Boolean isActiveAsyncJob = true;
     private final String JOB_STATUS_COMPLETED = 'Completed';
+
+    public BaseAsyncJob() {
+        String masterLabel = 'A_' + className;
+        List<ActiveSetting__mdt> activeSetttingList = [
+            SELECT Id,
+                   DeveloperName,
+                   isActive__c
+            FROM   ActiveSetting__mdt
+            WHERE  DeveloperName = 'A_All'
+               OR  DeveloperName = :masterLabel
+        ];
+        for(ActiveSetting__mdt activeSetting : activeSetttingList) {
+            if(!activeSetting.isActive__c) {
+                isActiveAsyncJob = false;
+                break;
+            }
+        }
+    }
     //-------------------------------------------------------
     // Processing part
     //-------------------------------------------------------
@@ -44,15 +63,15 @@ public with sharing virtual class BaseAsyncJob extends Base implements Database.
                 isSuccess = true;
             }
         }
-        info('');
-        info('JobType : '  + apexJob.JobType);
-        info('Status : '  + apexJob.Status);
-        info('CompletedDate : '  + apexJob.CompletedDate);
-        info('ApexClassName : '  + ac.Name);
-        info('MethodName : '  + apexJob.MethodName);
-        info('JobItemsProcessed : '  + apexJob.JobItemsProcessed);
-        info('TotalJobItems : '  + apexJob.TotalJobItems);
-        info('NumberOfErrors : '  + apexJob.NumberOfErrors);
+        info('call: isSuccessfulCompletion');
+        info('JobType: '  + apexJob.JobType);
+        info('Status: '  + apexJob.Status);
+        info('CompletedDate: '  + apexJob.CompletedDate);
+        info('ApexClassName: '  + ac.Name);
+        info('MethodName: '  + apexJob.MethodName);
+        info('JobItemsProcessed: '  + apexJob.JobItemsProcessed);
+        info('TotalJobItems: '  + apexJob.TotalJobItems);
+        info('NumberOfErrors: '  + apexJob.NumberOfErrors);
         return isSuccess;
     }
 }
