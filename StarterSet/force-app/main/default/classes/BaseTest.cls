@@ -45,6 +45,20 @@ private class BaseTest {
     }
     @isTest
     static void exceptionHandlerT01(){
+        System.runAs(testUser) {
+            Test.startTest();
+            Try {
+                Account a = new Account();
+                insert a;
+            } catch(Exception e) {
+                Base base = new Base();
+                base.exceptionHandler(e);
+            }
+            Test.stopTest();
+        }
+    }
+    @isTest
+    static void saveExceptionLogRecordT01(){
         Boolean isSuccess = false;
         System.runAs(testUser) {
             Test.startTest();
@@ -53,7 +67,7 @@ private class BaseTest {
                 insert a;
             } catch(Exception e) {
                 Base base = new Base();
-                isSuccess = base.exceptionHandler(e);
+                isSuccess = base.saveExceptionLogRecord(e);
             }
             Test.stopTest();
         }
