@@ -24,7 +24,7 @@ public with sharing virtual class Base {
                    DeveloperName,
                    isActive__c
             FROM   ActiveSetting__mdt
-            WHERE  MasterLabel Like 'L_%'
+            WHERE  DeveloperName Like 'L_%'
         ];
         for(ActiveSetting__mdt activeSetting : activeSetttingList) {
             switch on activeSetting.DeveloperName {

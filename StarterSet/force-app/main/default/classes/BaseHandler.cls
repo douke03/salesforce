@@ -7,15 +7,16 @@ public with sharing virtual class BaseHandler extends Base implements TriggerHan
     // Variables & Constants
     //-------------------------------------------------------
     private Boolean isActiveTrigger = true;
-    String masterLabel = 'T_' + className;
+    private String masterLabel = 'T_' + className;
+
     public BaseHandler() {
         List<ActiveSetting__mdt> activeSetttingList = [
             SELECT Id,
                    DeveloperName,
                    isActive__c
             FROM   ActiveSetting__mdt
-            WHERE  MasterLabel = 'T_All'
-               OR  MasterLabel = :masterLabel
+            WHERE  DeveloperName = 'T_All'
+               OR  DeveloperName = :masterLabel
         ];
         for(ActiveSetting__mdt activeSetting : activeSetttingList) {
             if(!activeSetting.isActive__c) {
