@@ -18,12 +18,4 @@ private class BaseHandlerTest {
             bh.handle();
         }
     }
-    @isTest
-    static void handleT02() {
-        System.runAs(testUser) {
-            BaseHandler bh = new BaseHandler();
-            bh.isTest = true;
-            bh.handle();
-        }
-    }
 }

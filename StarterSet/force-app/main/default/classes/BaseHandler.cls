@@ -19,9 +19,6 @@ public with sharing virtual class BaseHandler extends Base implements TriggerHan
                OR  DeveloperName = :masterLabel
         ];
         for(ActiveSetting__mdt activeSetting : activeSetttingList) {
-            if(isTest) {
-                activeSetting.isActive__c = false;
-            }
             if(!activeSetting.isActive__c) {
                 isActiveTrigger = false;
                 break;

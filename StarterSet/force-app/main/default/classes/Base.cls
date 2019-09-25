@@ -16,8 +16,6 @@ public with sharing virtual class Base {
     private Boolean isWarn  = false;
     @TestVisible
     private Boolean isError = false;
-    @TestVisible
-    public Boolean isTest = false;
 
     public Base() {
         info('Call: ' + className);
