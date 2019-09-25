@@ -19,6 +19,9 @@ public with sharing virtual class BaseHandler extends Base implements TriggerHan
                OR  DeveloperName = :masterLabel
         ];
         for(ActiveSetting__mdt activeSetting : activeSetttingList) {
+            if(isTest) {
+                activeSetting.isActive__c = false;
+            }
             if(!activeSetting.isActive__c) {
                 isActiveTrigger = false;
                 break;
@@ -33,7 +36,7 @@ public with sharing virtual class BaseHandler extends Base implements TriggerHan
      *      All Trigger processes implemented according to the template go through this process.
      * @author Nakano Shoki
      */
-    public void handle(){
+    public void handle() {
         if(isActiveTrigger) {
             try {
                 List<Object> newObjects = Trigger.new;
@@ -81,7 +84,7 @@ public with sharing virtual class BaseHandler extends Base implements TriggerHan
      * @param newObjects
      * @author Nakano Shoki
      */
-    public virtual void processBeforeInsert(List<Object> newObjects){
+    public virtual void processBeforeInsert(List<Object> newObjects) {
         for(Object newObject : newObjects) {
             debug(newObject);
         }
@@ -93,7 +96,7 @@ public with sharing virtual class BaseHandler extends Base implements TriggerHan
      * @param oldObjects
      * @author Nakano Shoki
      */
-    public virtual void processBeforeUpdate(List<Object> newObjects, List<Object> oldObjects){
+    public virtual void processBeforeUpdate(List<Object> newObjects, List<Object> oldObjects) {
         for(Object newObject : newObjects) {
             debug(newObject);
         }
@@ -107,7 +110,7 @@ public with sharing virtual class BaseHandler extends Base implements TriggerHan
      * @param oldObjects
      * @author Nakano Shoki
      */
-    public virtual void processBeforeDelete(List<Object> oldObjects){
+    public virtual void processBeforeDelete(List<Object> oldObjects) {
         for(Object oldObject : oldObjects) {
             debug(oldObject);
         }
@@ -118,7 +121,7 @@ public with sharing virtual class BaseHandler extends Base implements TriggerHan
      * @param newObjects
      * @author Nakano Shoki
      */
-    public virtual void processAfterInsert(List<Object> newObjects){
+    public virtual void processAfterInsert(List<Object> newObjects) {
         for(Object newObject : newObjects) {
             debug(newObject);
         }
@@ -130,7 +133,7 @@ public with sharing virtual class BaseHandler extends Base implements TriggerHan
      * @param oldObjects
      * @author Nakano Shoki
      */
-    public virtual void processAfterUpdate(List<Object> newObjects, List<Object> oldObjects){
+    public virtual void processAfterUpdate(List<Object> newObjects, List<Object> oldObjects) {
         for(Object newObject : newObjects) {
             debug(newObject);
         }
@@ -144,7 +147,7 @@ public with sharing virtual class BaseHandler extends Base implements TriggerHan
      * @param oldObjects
      * @author Nakano Shoki
      */
-    public virtual void processAfterDelete(List<Object> oldObjects){
+    public virtual void processAfterDelete(List<Object> oldObjects) {
         for(Object oldObject : oldObjects) {
             debug(oldObject);
         }

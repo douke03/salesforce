@@ -12,7 +12,7 @@ private class BaseTest {
     // Testing part
     //-------------------------------------------------------
     @isTest
-    static void debugT01(){
+    static void debugT01() {
         System.runAs(testUser) {
             Base base = new Base();
             base.isDebug = true;
@@ -20,7 +20,7 @@ private class BaseTest {
         }
     }
     @isTest
-    static void infoT01(){
+    static void infoT01() {
         System.runAs(testUser) {
             Base base = new Base();
             base.isInfo = true;
@@ -28,7 +28,7 @@ private class BaseTest {
         }
     }
     @isTest
-    static void warnT01(){
+    static void warnT01() {
         System.runAs(testUser) {
             Base base = new Base();
             base.isWarn = true;
@@ -36,7 +36,7 @@ private class BaseTest {
         }
     }
     @isTest
-    static void errorT01(){
+    static void errorT01() {
         System.runAs(testUser) {
             Base base = new Base();
             base.isError = true;
@@ -44,7 +44,7 @@ private class BaseTest {
         }
     }
     @isTest
-    static void exceptionHandlerT01(){
+    static void exceptionHandlerT01() {
         System.runAs(testUser) {
             Test.startTest();
             Try {
@@ -58,7 +58,7 @@ private class BaseTest {
         }
     }
     @isTest
-    static void saveExceptionLogRecordT01(){
+    static void saveExceptionLogRecordT01() {
         Boolean isSuccess = false;
         System.runAs(testUser) {
             Test.startTest();
@@ -71,6 +71,6 @@ private class BaseTest {
             }
             Test.stopTest();
         }
-        System.assert(true, isSuccess);
+        System.assertEquals(true, isSuccess);
     }
 }
