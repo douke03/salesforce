@@ -33,7 +33,7 @@ public with sharing virtual class Base {
                 when 'L_Warn'  {isWarn  = activeSetting.isActive__c;}
                 when 'L_Error' {isError = activeSetting.isActive__c;}
                 when else {
-                    info(activeSetting.DeveloperName);
+                    warn(activeSetting.DeveloperName);
                 }
             }
         }
@@ -100,20 +100,18 @@ public with sharing virtual class Base {
     }
     /**
      * @description Save Exception Info
-     *      This process saves the received exception in a platform event.
-     *      And returns the success or failure of the saves process.
+     *      This process saves the received exception in an ErrorLog__c.
      * @param Exception
      * @return Boolean
      * @author Nakano Shoki
      */
-    public Boolean saveExceptionLogRecord(Exception e) {
-        ExceptionNotification__e en = new ExceptionNotification__e(
-            ExecutionUserID__c = UserInfo.getUserId(),
-            TypeName__c        = e.getTypeName(),
-            StackTrace__c      = e.getStackTraceString(),
-            Message__c         = e.getMessage()
+    public void saveExceptionLogRecord(Exception e) {
+        ErrorLog__c el = new ErrorLog__c(
+            ExecutionUser__c = UserInfo.getUserId(),
+            TypeName__c      = e.getTypeName(),
+            StackTrace__c    = e.getStackTraceString(),
+            LogMessage__c    = e.getMessage()
         );
-        Database.SaveResult sr = EventBus.publish(en);
-        return sr.isSuccess();
+        insert el;
     }
 }

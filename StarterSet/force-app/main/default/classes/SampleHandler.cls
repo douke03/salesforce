@@ -10,7 +10,11 @@ public without sharing class SampleHandler extends BaseHandler {
     public override void processBeforeInsert(List<Object> newObjects) {
         debug('check work');
         for(Object newObject : newObjects) {
-            debug(newObject);
+            Sample__c sample = (Sample__c)newObject;
+            debug(sample);
+            // sample.addError('test');
         }
+        Account a = new Account();
+        insert a;
     }
 }
