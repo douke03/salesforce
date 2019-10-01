@@ -105,7 +105,7 @@ public with sharing virtual class Base {
      * @param Exception
      * @author Nakano Shoki
      */
-    public VisualEditor.DynamicPickListRows saveExceptionLogRecord(Exception e) {
+    public void saveExceptionLogRecord(Exception e) {
         ExceptionNotification__e en = new ExceptionNotification__e(
             ExecutionUserID__c = UserInfo.getUserId(),
             TypeName__c        = e.getTypeName(),
