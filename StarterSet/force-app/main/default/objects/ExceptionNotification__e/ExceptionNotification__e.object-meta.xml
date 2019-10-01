@@ -4,5 +4,5 @@
     <description>Exception発生時にログを保存するための一時保存用プラットフォームイベント</description>
     <eventType>HighVolume</eventType>
     <label>ExceptionNotification</label>
-    <publishBehavior>PublishAfterCommit</publishBehavior>
+    <publishBehavior>PublishImmediately</publishBehavior>
 </CustomObject>
