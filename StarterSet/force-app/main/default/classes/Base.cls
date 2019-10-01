@@ -101,6 +101,8 @@ public with sharing virtual class Base {
     /**
      * @description Save Exception Info
      *      This process saves the received exception in a platform event.
+     *      Tips:If you use addError(...), a rollback is performed and you cannot insert an error log or send an email.
+     *           However, Platform Event registrations are not rolled back.
      * @param Exception
      * @author Nakano Shoki
      */
