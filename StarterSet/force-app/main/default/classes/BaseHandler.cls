@@ -35,9 +35,9 @@ public with sharing virtual class BaseHandler extends Base implements TriggerHan
      */
     public void handle() {
         if(isActiveTrigger) {
+            List<Object> newObjects = Trigger.new;
+            List<Object> oldObjects = Trigger.old;
             try {
-                List<Object> newObjects = Trigger.new;
-                List<Object> oldObjects = Trigger.old;
                 if(Trigger.isBefore) {
                     if(Trigger.isInsert) {
                         info('[TRIGGER] Process Before Insert');
@@ -68,6 +68,10 @@ public with sharing virtual class BaseHandler extends Base implements TriggerHan
                 }
             } catch(Exception e) {
                 exceptionHandler(e);
+                Trigger.new[0].addError('test addError');
+                // for(Object newObject : newObjects) {
+                //     newObject.addError('test addError');
+                // }
             } finally {
                 // none
             }
