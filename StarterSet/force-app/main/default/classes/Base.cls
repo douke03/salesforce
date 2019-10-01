@@ -100,18 +100,13 @@ public with sharing virtual class Base {
     }
     /**
      * @description Save Exception Info
-<<<<<<< HEAD
      *      This process saves the received exception in a platform event.
      *      Tips:If you use addError(...), a rollback is performed and you cannot insert an error log or send an email.
      *           However, Platform Event registrations are not rolled back.
-=======
-     *      This process saves the received exception in an ErrorLog__c.
->>>>>>> 9c09ade05e358cf752cfa38c00b9cff64c6791c6
      * @param Exception
      * @author Nakano Shoki
      */
     public void saveExceptionLogRecord(Exception e) {
-<<<<<<< HEAD
         ExceptionNotification__e en = new ExceptionNotification__e(
             ExecutionUserID__c = UserInfo.getUserId(),
             TypeName__c        = e.getTypeName(),
@@ -119,14 +114,5 @@ public with sharing virtual class Base {
             Message__c         = e.getMessage()
         );
         EventBus.publish(en);
-=======
-        ErrorLog__c el = new ErrorLog__c(
-            ExecutionUser__c = UserInfo.getUserId(),
-            TypeName__c      = e.getTypeName(),
-            StackTrace__c    = e.getStackTraceString(),
-            LogMessage__c    = e.getMessage()
-        );
-        insert el;
->>>>>>> 9c09ade05e358cf752cfa38c00b9cff64c6791c6
     }
 }
