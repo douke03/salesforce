@@ -33,7 +33,7 @@ public with sharing virtual class Base {
                 when 'L_Warn'  {isWarn  = activeSetting.isActive__c;}
                 when 'L_Error' {isError = activeSetting.isActive__c;}
                 when else {
-                    info(activeSetting.DeveloperName);
+                    warn(activeSetting.DeveloperName);
                 }
             }
         }

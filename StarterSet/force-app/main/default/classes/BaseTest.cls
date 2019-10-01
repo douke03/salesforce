@@ -67,10 +67,9 @@ private class BaseTest {
                 insert a;
             } catch(Exception e) {
                 Base base = new Base();
-                isSuccess = base.saveExceptionLogRecord(e);
+                base.saveExceptionLogRecord(e);
             }
             Test.stopTest();
         }
-        System.assertEquals(true, isSuccess);
     }
 }
