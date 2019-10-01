@@ -101,7 +101,6 @@ public with sharing virtual class Base {
     /**
      * @description Save Exception Info
      *      This process saves the received exception in a platform event.
-     *      And returns the success or failure of the saves process.
      * @param Exception
      * @author Nakano Shoki
      */

@@ -70,9 +70,6 @@ public with sharing virtual class BaseHandler extends Base implements TriggerHan
                 for(Integer i = 0, j = newObjects.size(); i < j; i++) {
                     Trigger.new[i].addError('想定外のエラーが発生しました。システム管理者へお問い合わせください。');
                 }
-                /* Tips:
-                 * If you use addError(...), a rollback is performed and you cannot insert an error log or send an email.
-                 */
                 exceptionHandler(e);
             } finally {
                 // none
