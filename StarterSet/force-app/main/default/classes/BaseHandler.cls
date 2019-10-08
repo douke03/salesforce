@@ -35,39 +35,37 @@ public with sharing virtual class BaseHandler extends Base implements TriggerHan
      */
     public void handle() {
         if(isActiveTrigger) {
-            List<Object> newObjects = Trigger.new;
-            List<Object> oldObjects = Trigger.old;
             try {
                 if(Trigger.isBefore) {
                     if(Trigger.isInsert) {
                         info('[TRIGGER] Process Before Insert');
-                        processBeforeInsert(newObjects);
+                        processBeforeInsert(Trigger.new);
                     }
                     if(Trigger.isUpdate) {
                         info('[TRIGGER] Process Before Update');
-                        processBeforeUpdate(newObjects, oldObjects);
+                        processBeforeUpdate(Trigger.newMap, Trigger.oldMap);
                     }
                     if(Trigger.isDelete) {
                         info('[TRIGGER] Process Before Delete');
-                        processBeforeDelete(oldObjects);
+                        processBeforeDelete(Trigger.old);
                     }
                 }
                 if(Trigger.isAfter) {
                     if(Trigger.isInsert) {
                         info('[TRIGGER] Process After Insert');
-                        processAfterInsert(newObjects);
+                        processAfterInsert(Trigger.new);
                     }
                     if(Trigger.isUpdate) {
                         info('[TRIGGER] Process After Update');
-                        processAfterUpdate(newObjects, oldObjects);
+                        processAfterUpdate(Trigger.newMap, Trigger.oldMap);
                     }
                     if(Trigger.isDelete) {
                         info('[TRIGGER] Process After Delete');
-                        processAfterDelete(oldObjects);
+                        processAfterDelete(Trigger.old);
                     }
                 }
             } catch(Exception e) {
-                for(Integer i = 0, j = newObjects.size(); i < j; i++) {
+                for(Integer i = 0, j = Trigger.new.size(); i < j; i++) {
                     Trigger.new[i].addError('想定外のエラーが発生しました。システム管理者へお問い合わせください。');
                 }
                 exceptionHandler(e);
@@ -81,7 +79,7 @@ public with sharing virtual class BaseHandler extends Base implements TriggerHan
     /**
      * @description Process before insert
      *      If implement BeforeInsert process, must override this process.
-     * @param newObjects
+     * @param List<Object> newObjects
      * @author Nakano Shoki
      */
     public virtual void processBeforeInsert(List<Object> newObjects) {
@@ -92,22 +90,22 @@ public with sharing virtual class BaseHandler extends Base implements TriggerHan
     /**
      * @description Process before update
      *      If implement BeforeUpdate process, must override this process.
-     * @param newObjects
-     * @param oldObjects
+     * @param Map<Id, Object> newObjectMap
+     * @param Map<Id, Object> oldObjectMap
      * @author Nakano Shoki
      */
-    public virtual void processBeforeUpdate(List<Object> newObjects, List<Object> oldObjects) {
-        for(Object newObject : newObjects) {
-            debug(newObject);
+    public virtual void processBeforeUpdate(Map<Id, Object> newObjectMap, Map<Id, Object> oldObjectMap) {
+        for (String key : newObjectMap.keySet()) {
+            debug(newObjectMap.get(key));
         }
-        for(Object oldObject : oldObjects) {
+        for (Object oldObject : oldObjectMap.values()) {
             debug(oldObject);
         }
     }
     /**
      * @description Process before delete
      *      If implement BeforeDelete process, must override this process.
-     * @param oldObjects
+     * @param List<Object> oldObjects
      * @author Nakano Shoki
      */
     public virtual void processBeforeDelete(List<Object> oldObjects) {
@@ -118,7 +116,7 @@ public with sharing virtual class BaseHandler extends Base implements TriggerHan
     /**
      * @description Process after insert
      *      If implement AfterInsert process, must override this process.
-     * @param newObjects
+     * @param List<Object> newObjects
      * @author Nakano Shoki
      */
     public virtual void processAfterInsert(List<Object> newObjects) {
@@ -129,22 +127,22 @@ public with sharing virtual class BaseHandler extends Base implements TriggerHan
     /**
      * @description Process after update
      *      If implement AfterUpdate process, must override this process.
-     * @param newObjects
-     * @param oldObjects
+     * @param Map<Id, Object> newObjectMap
+     * @param Map<Id, Object> oldObjectMap
      * @author Nakano Shoki
      */
-    public virtual void processAfterUpdate(List<Object> newObjects, List<Object> oldObjects) {
-        for(Object newObject : newObjects) {
-            debug(newObject);
+    public virtual void processAfterUpdate(Map<Id, Object> newObjectMap, Map<Id, Object> oldObjectMap) {
+        for (String key : newObjectMap.keySet()) {
+            debug(newObjectMap.get(key));
         }
-        for(Object oldObject : oldObjects) {
-            debug(oldObject);
+        for (String key : oldObjectMap.keySet()) {
+            debug(oldObjectMap.get(key));
         }
     }
     /**
      * @description Process after delete
      *      If implement AfterDelete process, must override this process.
-     * @param oldObjects
+     * @param List<Object> oldObjects
      * @author Nakano Shoki
      */
     public virtual void processAfterDelete(List<Object> oldObjects) {

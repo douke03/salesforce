@@ -9,9 +9,9 @@ public without sharing class ExceptionNotificationHandler extends BaseHandler {
      * @author Nakano Shoki
      */
     public override void processAfterInsert(List<Object> newObjects) {
+        List<ExceptionNotification__e> enList = (List<ExceptionNotification__e>)newObjects;
         List<ErrorLog__c> elList = new List<ErrorLog__c>();
-        for(Object newObject : newObjects) {
-            ExceptionNotification__e en = (ExceptionNotification__e)newObject;
+        for(ExceptionNotification__e en : enList) {
             ErrorLog__c el = new ErrorLog__c(
                 ExecutionUser__c = en.ExecutionUserID__c,
                 TypeName__c = en.TypeName__c,

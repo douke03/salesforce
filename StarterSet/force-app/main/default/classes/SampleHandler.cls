@@ -14,7 +14,5 @@ public without sharing class SampleHandler extends BaseHandler {
             debug(sample);
             // sample.addError('test');
         }
-        Account a = new Account();
-        insert a;
     }
 }
