@@ -34,7 +34,7 @@ public with sharing virtual class BaseAsyncJob extends Base implements Database.
      * @description Batch processing end judgment processing
      *      This process searches the processing result with the received job ID and saves the contents in AsyncJobExecutionResult__c.
      *      And returns the success or failure of the saves process.
-     * @param ID
+     * @param ID jobId
      * @return Boolean
      * @author Nakano Shoki
      */

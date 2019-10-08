@@ -7,7 +7,7 @@ public class TDF {
     /**
      * @description Create user instance for testing
      *      This process creates a test user instance with the received profile name.
-     * @param String
+     * @param String profileName
      * @author Nakano Shoki
      */
     public static User testUser(String profileName) {
@@ -18,7 +18,7 @@ public class TDF {
     /**
      * @description Create user instance for testing
      *      This process creates a test user instance with the received profile names.
-     * @param List<String>
+     * @param List<String> profileNames
      * @author Nakano Shoki
      */
     public static User testUser(List<String> profileNames) {
@@ -27,7 +27,7 @@ public class TDF {
     /**
      * @description Create user instance for testing
      *      This process return a test user instance with the received profile names.
-     * @param List<String>
+     * @param List<String> profileNames
      * @author Nakano Shoki
      */
     public static User userInstance(List<String> profileNames) {

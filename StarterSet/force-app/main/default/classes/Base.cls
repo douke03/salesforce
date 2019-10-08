@@ -44,7 +44,7 @@ public with sharing virtual class Base {
     /**
      * @description logger(level is DEBUG)
      *      This process outputs the received value.
-     * @param Object
+     * @param Object message
      * @author Nakano Shoki
      */
     public void debug(Object message) {
@@ -55,7 +55,7 @@ public with sharing virtual class Base {
     /**
      * @description logger(level is INFO)
      *      This process outputs the received value.
-     * @param Object
+     * @param Object message
      * @author Nakano Shoki
      */
     public void info(Object message) {
@@ -66,7 +66,7 @@ public with sharing virtual class Base {
     /**
      * @description logger(level is WARN)
      *      This process outputs the received value.
-     * @param Object
+     * @param Object message
      * @author Nakano Shoki
      */
     public void warn(Object message) {
@@ -77,7 +77,7 @@ public with sharing virtual class Base {
     /**
      * @description logger(level is ERROR)
      *      This process outputs the received value.
-     * @param Object
+     * @param Object message
      * @author Nakano Shoki
      */
     public void error(Object message) {
@@ -88,7 +88,7 @@ public with sharing virtual class Base {
     /**
      * @description Exception Handler
      *      This process is a controller class for exception handling.
-     * @param Exception
+     * @param Exception e
      * @author Nakano Shoki
      */
     public void exceptionHandler(Exception e) {
@@ -103,7 +103,7 @@ public with sharing virtual class Base {
      *      This process saves the received exception in a platform event.
      *      Tips:If you use addError(...), a rollback is performed and you cannot insert an error log or send an email.
      *           However, Platform Event registrations are not rolled back.
-     * @param Exception
+     * @param Exception e
      * @author Nakano Shoki
      */
     public void saveExceptionLogRecord(Exception e) {
