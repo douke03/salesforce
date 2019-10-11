@@ -7,7 +7,7 @@ public with sharing virtual class Base {
     // Variables & Constants
     //-------------------------------------------------------
     public String className = String.valueOf(this).substring(0,String.valueOf(this).indexOf(':'));
-    private String assert = '======== ';
+    private String indent = '======== ';
     @TestVisible
     private Boolean isDebug = false;
     @TestVisible
@@ -18,7 +18,7 @@ public with sharing virtual class Base {
     private Boolean isError = false;
 
     public Base() {
-        info('Call: ' + className);
+        info('Execution: ' + className);
         List<ActiveSetting__mdt> activeSetttingList = [
             SELECT Id,
                    DeveloperName,
@@ -49,7 +49,7 @@ public with sharing virtual class Base {
      */
     public void debug(Object message) {
         if(isDebug) {
-            System.debug(Logginglevel.DEBUG, assert + message);
+            System.debug(Logginglevel.DEBUG, indent + message);
         }
     }
     /**
@@ -60,7 +60,7 @@ public with sharing virtual class Base {
      */
     public void info(Object message) {
         if(isInfo) {
-            System.debug(Logginglevel.INFO, assert + message);
+            System.debug(Logginglevel.INFO, indent + message);
         }
     }
     /**
@@ -71,7 +71,7 @@ public with sharing virtual class Base {
      */
     public void warn(Object message) {
         if(isWarn) {
-            System.debug(Logginglevel.WARN, assert + message);
+            System.debug(Logginglevel.WARN, indent + message);
         }
     }
     /**
@@ -82,7 +82,7 @@ public with sharing virtual class Base {
      */
     public void error(Object message) {
         if(isError) {
-            System.debug(Logginglevel.ERROR, assert + message);
+            System.debug(Logginglevel.ERROR, indent + message);
         }
     }
     /**
