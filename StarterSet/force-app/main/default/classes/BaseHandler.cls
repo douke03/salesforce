@@ -34,35 +34,17 @@ public with sharing virtual class BaseHandler extends Base implements TriggerHan
      * @author Nakano Shoki
      */
     public void handle() {
+        info('[TRIGGER] ' + Trigger.operationType);
         if(isActiveTrigger) {
             try {
-                if(Trigger.isBefore) {
-                    if(Trigger.isInsert) {
-                        info('[TRIGGER] Process Before Insert');
-                        processBeforeInsert(Trigger.new);
-                    }
-                    if(Trigger.isUpdate) {
-                        info('[TRIGGER] Process Before Update');
-                        processBeforeUpdate(Trigger.newMap, Trigger.oldMap);
-                    }
-                    if(Trigger.isDelete) {
-                        info('[TRIGGER] Process Before Delete');
-                        processBeforeDelete(Trigger.old);
-                    }
-                }
-                if(Trigger.isAfter) {
-                    if(Trigger.isInsert) {
-                        info('[TRIGGER] Process After Insert');
-                        processAfterInsert(Trigger.new);
-                    }
-                    if(Trigger.isUpdate) {
-                        info('[TRIGGER] Process After Update');
-                        processAfterUpdate(Trigger.newMap, Trigger.oldMap);
-                    }
-                    if(Trigger.isDelete) {
-                        info('[TRIGGER] Process After Delete');
-                        processAfterDelete(Trigger.old);
-                    }
+                switch on Trigger.operationType {
+                    when BEFORE_INSERT  {beforeInsert(Trigger.new);}
+                    when BEFORE_UPDATE  {beforeUpdate(Trigger.newMap, Trigger.oldMap);}
+                    when BEFORE_DELETE  {beforeDelete(Trigger.old);}
+                    when AFTER_INSERT   {afterInsert(Trigger.new);}
+                    when AFTER_UPDATE   {afterUpdate(Trigger.newMap, Trigger.oldMap);}
+                    when AFTER_DELETE   {afterDelete(Trigger.old);}
+                    when AFTER_UNDELETE {afterUndelete(Trigger.new);}
                 }
             } catch(Exception e) {
                 for(Integer i = 0, j = Trigger.new.size(); i < j; i++) {
@@ -82,7 +64,7 @@ public with sharing virtual class BaseHandler extends Base implements TriggerHan
      * @param List<Object> newObjects
      * @author Nakano Shoki
      */
-    public virtual void processBeforeInsert(List<Object> newObjects) {
+    public virtual void beforeInsert(List<Object> newObjects) {
         for(Object newObject : newObjects) {
             debug(newObject);
         }
@@ -94,7 +76,7 @@ public with sharing virtual class BaseHandler extends Base implements TriggerHan
      * @param Map<Id, Object> oldObjectMap
      * @author Nakano Shoki
      */
-    public virtual void processBeforeUpdate(Map<Id, Object> newObjectMap, Map<Id, Object> oldObjectMap) {
+    public virtual void beforeUpdate(Map<Id, Object> newObjectMap, Map<Id, Object> oldObjectMap) {
         for (String key : newObjectMap.keySet()) {
             debug(newObjectMap.get(key));
         }
@@ -108,7 +90,7 @@ public with sharing virtual class BaseHandler extends Base implements TriggerHan
      * @param List<Object> oldObjects
      * @author Nakano Shoki
      */
-    public virtual void processBeforeDelete(List<Object> oldObjects) {
+    public virtual void beforeDelete(List<Object> oldObjects) {
         for(Object oldObject : oldObjects) {
             debug(oldObject);
         }
@@ -119,7 +101,7 @@ public with sharing virtual class BaseHandler extends Base implements TriggerHan
      * @param List<Object> newObjects
      * @author Nakano Shoki
      */
-    public virtual void processAfterInsert(List<Object> newObjects) {
+    public virtual void afterInsert(List<Object> newObjects) {
         for(Object newObject : newObjects) {
             debug(newObject);
         }
@@ -131,7 +113,7 @@ public with sharing virtual class BaseHandler extends Base implements TriggerHan
      * @param Map<Id, Object> oldObjectMap
      * @author Nakano Shoki
      */
-    public virtual void processAfterUpdate(Map<Id, Object> newObjectMap, Map<Id, Object> oldObjectMap) {
+    public virtual void afterUpdate(Map<Id, Object> newObjectMap, Map<Id, Object> oldObjectMap) {
         for (String key : newObjectMap.keySet()) {
             debug(newObjectMap.get(key));
         }
@@ -145,9 +127,20 @@ public with sharing virtual class BaseHandler extends Base implements TriggerHan
      * @param List<Object> oldObjects
      * @author Nakano Shoki
      */
-    public virtual void processAfterDelete(List<Object> oldObjects) {
+    public virtual void afterDelete(List<Object> oldObjects) {
         for(Object oldObject : oldObjects) {
             debug(oldObject);
+        }
+    }
+    /**
+     * @description Process after undelete
+     *      If implement AfterUndelete process, must override this process.
+     * @param List<Object> newObjects
+     * @author Nakano Shoki
+     */
+    public virtual void afterUndelete(List<Object> newObjects) {
+        for(Object newObject : newObjects) {
+            debug(newObject);
         }
     }
 }
