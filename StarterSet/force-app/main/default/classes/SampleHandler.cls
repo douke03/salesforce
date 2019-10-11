@@ -7,10 +7,10 @@ public without sharing class SampleHandler extends BaseHandler {
      * @description Before insert
      * @author Nakano Shoki
      */
-    public override void beforeInsert(List<Object> newObjects) {
+    public override void beforeInsert(List<Object> newObjectList) {
         debug('check work');
-        for(Object newObject : newObjects) {
-            Sample__c sample = (Sample__c)newObject;
+        List<Sample__c> sampleList = (List<Sample__c>)newObjectList;
+        for(Sample__c sample : sampleList) {
             debug(sample);
             // sample.addError('test');
         }

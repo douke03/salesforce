@@ -8,10 +8,10 @@ global with sharing class DeletingErrorLog Implements Schedulable {
     }
     global void execute(SchedulableContext sc) {
         String className = String.valueOf(this).substring(0,String.valueOf(this).indexOf(':'));
-        Type targettype = Type.forName(className + 'Processing');
-        if(targettype!=null) {
-            SchedulableExecute obj = (SchedulableExecute)targettype.NewInstance();
-            obj.execute(sc);
+        Type dataType = Type.forName(className + 'Processing');
+        if(dataType!=null) {
+            SchedulableExecute se = (SchedulableExecute)dataType.NewInstance();
+            se.execute(sc);
         }
     }
 }

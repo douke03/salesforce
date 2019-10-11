@@ -92,10 +92,10 @@ public with sharing virtual class Base {
      * @author Nakano Shoki
      */
     public void exceptionHandler(Exception e) {
-        error('e.getCause(): ' + e.getCause());
-        error('e.getTypeName(): ' + e.getTypeName());
-        error('e.getStackTraceString(): ' + e.getStackTraceString());
-        error('e.getMessage(): ' + e.getMessage());
+        error('Exception.getCause(): ' + e.getCause());
+        error('Exception.getTypeName(): ' + e.getTypeName());
+        error('Exception.getStackTraceString(): ' + e.getStackTraceString());
+        error('Exception.getMessage(): ' + e.getMessage());
         saveExceptionLogRecord(e);
     }
     /**

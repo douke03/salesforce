@@ -35,12 +35,12 @@ public without sharing class DeletingErrorLogProcessing extends BaseAsyncJob imp
      * @description Delete the records.
      * @author Nakano Shoki
      */
-    public void execute(Database.BatchableContext bc, List<ErrorLog__c> elList) {
+    public void execute(Database.BatchableContext bc, List<ErrorLog__c> errorLogList) {
         info(className + ': execute');
         if(isActiveAsyncJob) {
             Savepoint sp = Database.setSavepoint();
             try {
-                delete elList;
+                delete errorLogList;
             } catch(Exception e) {
                 Database.rollback(sp);
                 exceptionHandler(e);
