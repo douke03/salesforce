@@ -2,7 +2,7 @@
 
 This guide helps Salesforce developers use this package to develop Apex.
 
-## Part 1: Choosing a Development Model
+## ここから下は追々メンテ
 
 There are two types of developer processes or models supported in Salesforce Extensions for VS Code and Salesforce CLI. These models are explained below. Each model offers pros and cons and is fully supported.
 
