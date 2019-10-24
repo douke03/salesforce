@@ -7,18 +7,13 @@ public with sharing virtual class Base {
     // Variables & Constants
     //-------------------------------------------------------
     public String className = String.valueOf(this).substring(0,String.valueOf(this).indexOf(':'));
-    private String indent = '======== ';
-    @TestVisible
-    private Boolean isDebug = false;
-    @TestVisible
-    private Boolean isInfo  = false;
-    @TestVisible
-    private Boolean isWarn  = false;
-    @TestVisible
-    private Boolean isError = false;
+    private String indent = ' ';
+    private final Boolean isDebug;
+    private final Boolean isInfo;
+    private final Boolean isWarn;
+    private final Boolean isError;
 
     public Base() {
-        info('Execution: ' + className);
         List<ActiveSetting__mdt> activeSetttingList = [
             SELECT Id,
                    DeveloperName,
@@ -48,8 +43,8 @@ public with sharing virtual class Base {
      * @author Nakano Shoki
      */
     public void debug(Object message) {
-        if(isDebug) {
-            System.debug(Logginglevel.DEBUG, indent + message);
+        if(isDebug || Test.isRunningTest()) {
+            logger(Logginglevel.DEBUG, message);
         }
     }
     /**
@@ -59,8 +54,8 @@ public with sharing virtual class Base {
      * @author Nakano Shoki
      */
     public void info(Object message) {
-        if(isInfo) {
-            System.debug(Logginglevel.INFO, indent + message);
+        if(isInfo || Test.isRunningTest()) {
+            logger(Logginglevel.INFO, message);
         }
     }
     /**
@@ -70,8 +65,8 @@ public with sharing virtual class Base {
      * @author Nakano Shoki
      */
     public void warn(Object message) {
-        if(isWarn) {
-            System.debug(Logginglevel.WARN, indent + message);
+        if(isWarn || Test.isRunningTest()) {
+            logger(Logginglevel.WARN, message);
         }
     }
     /**
@@ -81,9 +76,29 @@ public with sharing virtual class Base {
      * @author Nakano Shoki
      */
     public void error(Object message) {
-        if(isError) {
-            System.debug(Logginglevel.ERROR, indent + message);
+        if(isError || Test.isRunningTest()) {
+            logger(Logginglevel.ERROR, message);
         }
+    }
+    /**
+     * @description logger
+     *      This process outputs the received value.
+     * @param LoggingLevel loggingLevel
+     * @param Object message
+     * @author Nakano Shoki
+     */
+    private void logger(LoggingLevel loggingLevel, Object message) {
+        System.debug(loggingLevel, message);
+        // System.debug(logLevel, logLevel.rightPad(6) + now() + indent + message);
+    }
+    /**
+     * @description Return the current local time
+     *      This process return the current local time.
+     * @return String(yyyy-mm-dd hh:mm:ss)
+     * @author Nakano Shoki
+     */
+    private String now() {
+        return Datetime.now().format('yyyy-mm-dd hh:mm:ss');
     }
     /**
      * @description Exception Handler

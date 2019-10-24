@@ -15,7 +15,6 @@ private class BaseTest {
     static void debugT01() {
         System.runAs(testUser) {
             Base base = new Base();
-            base.isDebug = true;
             base.debug('debug');
         }
     }
@@ -23,7 +22,6 @@ private class BaseTest {
     static void infoT01() {
         System.runAs(testUser) {
             Base base = new Base();
-            base.isInfo = true;
             base.info('info');
         }
     }
@@ -31,7 +29,6 @@ private class BaseTest {
     static void warnT01() {
         System.runAs(testUser) {
             Base base = new Base();
-            base.isWarn = true;
             base.warn('warn');
         }
     }
@@ -39,7 +36,6 @@ private class BaseTest {
     static void errorT01() {
         System.runAs(testUser) {
             Base base = new Base();
-            base.isError = true;
             base.error('error');
         }
     }
