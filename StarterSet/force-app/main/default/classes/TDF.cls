@@ -50,6 +50,17 @@ public class TDF {
             ProfileId         = pf.Id
         );
     }
+    /**
+     * @description Create Account instance for testing
+     *      This process return an Account instance.
+     * @param String accountName
+     * @author Nakano Shoki
+     */
+    public static Account accountInstance(String accountName) {
+        return new Account(
+            Name = accountName
+        );
+    }
     public static final List<String> PROFILE_SYSTEM_ADMINISTRATOR = new List<String>{
         'System Administrator',
         'システム管理者'

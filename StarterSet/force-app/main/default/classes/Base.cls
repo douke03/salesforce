@@ -6,12 +6,9 @@ public with sharing virtual class Base {
     //-------------------------------------------------------
     // Variables & Constants
     //-------------------------------------------------------
-    public String className = String.valueOf(this).substring(0,String.valueOf(this).indexOf(':'));
-    private String indent = ' ';
-    private final Boolean isDebug;
-    private final Boolean isInfo;
-    private final Boolean isWarn;
-    private final Boolean isError;
+    public final String className = String.valueOf(this).substring(0,String.valueOf(this).indexOf(':'));
+    private final String indent = ' ';
+    private final Boolean isDebug, isInfo, isWarn, isError;
 
     public Base() {
         List<ActiveSetting__mdt> activeSetttingList = [
@@ -32,6 +29,7 @@ public with sharing virtual class Base {
                 }
             }
         }
+        info('Class: ' + className);
     }
     //-------------------------------------------------------
     // Processing part
