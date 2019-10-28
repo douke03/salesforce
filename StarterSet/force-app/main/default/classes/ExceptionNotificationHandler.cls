@@ -8,7 +8,7 @@ public without sharing class ExceptionNotificationHandler extends BaseHandler {
      *      Save as an ErrorLog__c when an ExceptionNotification__e is created.
      * @author Nakano Shoki
      */
-    public override void afterInsert(List<Object> newObjectList) {
+    public override void afterInsert(List<sObject> newObjectList) {
         List<ExceptionNotification__e> excNotificationList = (List<ExceptionNotification__e>)newObjectList;
         List<ErrorLog__c> errorLogList = new List<ErrorLog__c>();
         for(ExceptionNotification__e excNotification : excNotificationList) {
