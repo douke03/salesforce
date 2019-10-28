@@ -6,10 +6,10 @@ public with sharing virtual class Base {
     //-------------------------------------------------------
     // Variables & Constants
     //-------------------------------------------------------
-    public final String className = String.valueOf(this).substring(0,String.valueOf(this).indexOf(':'));
-    private final String indent = ' ';
+    public  final String  className = String.valueOf(this).substring(0,String.valueOf(this).indexOf(':'));
+    private final String  indent = ' ';
+    public  final Boolean isTest = Test.isRunningTest();
     private final Boolean isDebug, isInfo, isWarn, isError;
-    public final Boolean isTest = Test.isRunningTest();
 
     public Base() {
         List<ActiveSetting__mdt> activeSetttingList = [
@@ -101,7 +101,7 @@ public with sharing virtual class Base {
     }
     /**
      * @description Exception Handler
-     *      This process is a controller class for exception handling.
+     *      This process is a controller method for exception handling.
      * @param Exception e
      * @author Nakano Shoki
      */
@@ -110,17 +110,17 @@ public with sharing virtual class Base {
         error('Exception.getTypeName(): ' + e.getTypeName());
         error('Exception.getStackTraceString(): ' + e.getStackTraceString());
         error('Exception.getMessage(): ' + e.getMessage());
-        saveExceptionLogRecord(e);
+        saveExceptionInfo(e);
     }
     /**
      * @description Save Exception Info
-     *      This process saves the received exception in a platform event.
-     *      Tips:If you use addError(...), a rollback is performed and you cannot insert an error log or send an email.
+     *      This process saves the received exception info in a platform event.
+     *      Tips:If you use addError(...), a rollback is performed and you cannot insert a record or send an email.
      *           However, Platform Event registrations are not rolled back.
      * @param Exception e
      * @author Nakano Shoki
      */
-    public void saveExceptionLogRecord(Exception e) {
+    public void saveExceptionInfo(Exception e) {
         ExceptionNotification__e en = new ExceptionNotification__e(
             ExecutionUserID__c = UserInfo.getUserId(),
             TypeName__c        = e.getTypeName(),

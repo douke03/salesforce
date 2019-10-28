@@ -54,7 +54,7 @@ private class BaseTest {
         }
     }
     @isTest
-    static void saveExceptionLogRecordT01() {
+    static void saveExceptionInfoT01() {
         Boolean isSuccess = false;
         System.runAs(testUser) {
             Test.startTest();
@@ -63,7 +63,7 @@ private class BaseTest {
                 insert a;
             } catch(Exception e) {
                 Base base = new Base();
-                base.saveExceptionLogRecord(e);
+                base.saveExceptionInfo(e);
             }
             Test.stopTest();
         }
