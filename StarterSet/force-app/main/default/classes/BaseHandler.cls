@@ -61,10 +61,10 @@ public with sharing virtual class BaseHandler extends Base implements TriggerHan
     /**
      * @description Process before insert
      *      If implement BeforeInsert process, must override this process.
-     * @param List<Object> newObjectList
+     * @param List<sObject> newObjectList
      * @author Nakano Shoki
      */
-    public virtual void beforeInsert(List<Object> newObjectList) {
+    public virtual void beforeInsert(List<sObject> newObjectList) {
         for(Object newObject : newObjectList) {
             debug(newObject);
         }
@@ -72,11 +72,11 @@ public with sharing virtual class BaseHandler extends Base implements TriggerHan
     /**
      * @description Process before update
      *      If implement BeforeUpdate process, must override this process.
-     * @param Map<Id, Object> newObjectMap
-     * @param Map<Id, Object> oldObjectMap
+     * @param Map<Id, sObject> newObjectMap
+     * @param Map<Id, sObject> oldObjectMap
      * @author Nakano Shoki
      */
-    public virtual void beforeUpdate(Map<Id, Object> newObjectMap, Map<Id, Object> oldObjectMap) {
+    public virtual void beforeUpdate(Map<Id, sObject> newObjectMap, Map<Id, sObject> oldObjectMap) {
         for (String key : newObjectMap.keySet()) {
             debug(newObjectMap.get(key));
         }
@@ -87,10 +87,10 @@ public with sharing virtual class BaseHandler extends Base implements TriggerHan
     /**
      * @description Process before delete
      *      If implement BeforeDelete process, must override this process.
-     * @param List<Object> oldObjectList
+     * @param List<sObject> oldObjectList
      * @author Nakano Shoki
      */
-    public virtual void beforeDelete(List<Object> oldObjectList) {
+    public virtual void beforeDelete(List<sObject> oldObjectList) {
         for(Object oldObject : oldObjectList) {
             debug(oldObject);
         }
@@ -98,10 +98,10 @@ public with sharing virtual class BaseHandler extends Base implements TriggerHan
     /**
      * @description Process after insert
      *      If implement AfterInsert process, must override this process.
-     * @param List<Object> newObjectList
+     * @param List<sObject> newObjectList
      * @author Nakano Shoki
      */
-    public virtual void afterInsert(List<Object> newObjectList) {
+    public virtual void afterInsert(List<sObject> newObjectList) {
         for(Object newObject : newObjectList) {
             debug(newObject);
         }
@@ -109,11 +109,11 @@ public with sharing virtual class BaseHandler extends Base implements TriggerHan
     /**
      * @description Process after update
      *      If implement AfterUpdate process, must override this process.
-     * @param Map<Id, Object> newObjectMap
-     * @param Map<Id, Object> oldObjectMap
+     * @param Map<Id, sObject> newObjectMap
+     * @param Map<Id, sObject> oldObjectMap
      * @author Nakano Shoki
      */
-    public virtual void afterUpdate(Map<Id, Object> newObjectMap, Map<Id, Object> oldObjectMap) {
+    public virtual void afterUpdate(Map<Id, sObject> newObjectMap, Map<Id, sObject> oldObjectMap) {
         for (String key : newObjectMap.keySet()) {
             debug(newObjectMap.get(key));
         }
@@ -124,10 +124,10 @@ public with sharing virtual class BaseHandler extends Base implements TriggerHan
     /**
      * @description Process after delete
      *      If implement AfterDelete process, must override this process.
-     * @param List<Object> oldObjectList
+     * @param List<sObject> oldObjectList
      * @author Nakano Shoki
      */
-    public virtual void afterDelete(List<Object> oldObjectList) {
+    public virtual void afterDelete(List<sObject> oldObjectList) {
         for(Object oldObject : oldObjectList) {
             debug(oldObject);
         }
@@ -135,10 +135,10 @@ public with sharing virtual class BaseHandler extends Base implements TriggerHan
     /**
      * @description Process after undelete
      *      If implement AfterUndelete process, must override this process.
-     * @param List<Object> newObjectList
+     * @param List<sObject> newObjectList
      * @author Nakano Shoki
      */
-    public virtual void afterUndelete(List<Object> newObjectList) {
+    public virtual void afterUndelete(List<sObject> newObjectList) {
         for(Object newObject : newObjectList) {
             debug(newObject);
         }

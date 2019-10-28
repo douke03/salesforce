@@ -9,6 +9,7 @@ public with sharing virtual class Base {
     public final String className = String.valueOf(this).substring(0,String.valueOf(this).indexOf(':'));
     private final String indent = ' ';
     private final Boolean isDebug, isInfo, isWarn, isError;
+    public final Boolean isTest = Test.isRunningTest();
 
     public Base() {
         List<ActiveSetting__mdt> activeSetttingList = [
@@ -41,7 +42,7 @@ public with sharing virtual class Base {
      * @author Nakano Shoki
      */
     public void debug(Object message) {
-        if(isDebug || Test.isRunningTest()) {
+        if(isDebug || isTest) {
             logger(Logginglevel.DEBUG, message);
         }
     }
@@ -52,7 +53,7 @@ public with sharing virtual class Base {
      * @author Nakano Shoki
      */
     public void info(Object message) {
-        if(isInfo || Test.isRunningTest()) {
+        if(isInfo || isTest) {
             logger(Logginglevel.INFO, message);
         }
     }
@@ -63,7 +64,7 @@ public with sharing virtual class Base {
      * @author Nakano Shoki
      */
     public void warn(Object message) {
-        if(isWarn || Test.isRunningTest()) {
+        if(isWarn || isTest) {
             logger(Logginglevel.WARN, message);
         }
     }
@@ -74,7 +75,7 @@ public with sharing virtual class Base {
      * @author Nakano Shoki
      */
     public void error(Object message) {
-        if(isError || Test.isRunningTest()) {
+        if(isError || isTest) {
             logger(Logginglevel.ERROR, message);
         }
     }
