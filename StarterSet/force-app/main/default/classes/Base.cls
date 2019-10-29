@@ -111,6 +111,7 @@ public with sharing virtual class Base {
         error('Exception.getStackTraceString(): ' + e.getStackTraceString());
         error('Exception.getMessage(): ' + e.getMessage());
         saveExceptionInfo(e);
+        // sendAlertEMail(e);
     }
     /**
      * @description Save Exception Info
