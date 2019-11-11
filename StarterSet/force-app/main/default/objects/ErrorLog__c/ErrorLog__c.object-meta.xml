@@ -145,13 +145,13 @@
     <deploymentStatus>Deployed</deploymentStatus>
     <description>処理中で発生したExceptionのログを保持するためのクラス。
 ExceptionNotification(プラットフォームイベント)のTrigger処理によって作成される。</description>
-    <enableActivities>true</enableActivities>
+    <enableActivities>false</enableActivities>
     <enableBulkApi>true</enableBulkApi>
     <enableFeeds>false</enableFeeds>
     <enableHistory>false</enableHistory>
     <enableLicensing>false</enableLicensing>
     <enableReports>true</enableReports>
-    <enableSearch>true</enableSearch>
+    <enableSearch>false</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <label>ErrorLog</label>
