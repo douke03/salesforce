@@ -8,6 +8,7 @@ public with sharing class Logger {
     //-------------------------------------------------------
     private final Boolean IS_DEBUG, IS_INFO, IS_WARN, IS_ERROR;
     private final Boolean IS_TEST = Test.isRunningTest();
+
     public Logger() {
         List<ActiveSetting__mdt> activeSetttingList = [
             SELECT Id,
