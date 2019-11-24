@@ -22,7 +22,7 @@ public without sharing class DeletingErrorLogProcessing extends BaseAsyncJob imp
      * @author Nakano Shoki
      */
     public Database.QueryLocator start(Database.BatchableContext bc) {
-        info(className + ': start');
+        info(CLASS_NAME + ': start');
         Date d = date.today().addMonths(-MONTH_TO_KEEP_LOG);
         Datetime baseDateToDelete = Datetime.newInstance(d.year(), d.month(), d.day());
         String query = ' SELECT Id'
@@ -36,7 +36,7 @@ public without sharing class DeletingErrorLogProcessing extends BaseAsyncJob imp
      * @author Nakano Shoki
      */
     public void execute(Database.BatchableContext bc, List<ErrorLog__c> errorLogList) {
-        info(className + ': execute');
+        info(CLASS_NAME + ': execute');
         if(isActiveAsyncJob) {
             Savepoint sp = Database.setSavepoint();
             try {
@@ -47,7 +47,7 @@ public without sharing class DeletingErrorLogProcessing extends BaseAsyncJob imp
                 throw new AsyncJobException(e);
             }
         } else {
-            info(className + 'did not work because ActiveSetting is false.');
+            info(CLASS_NAME + 'did not work because ActiveSetting is false.');
         }
     }
     /**
@@ -55,7 +55,7 @@ public without sharing class DeletingErrorLogProcessing extends BaseAsyncJob imp
      * @author Nakano Shoki
      */
     public void finish(Database.BatchableContext bc) {
-        info(className + ': finish');
+        info(CLASS_NAME + ': finish');
         isSuccessfulCompletion(bc.getJobId());
     }
 }

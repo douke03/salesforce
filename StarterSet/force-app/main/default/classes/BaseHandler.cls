@@ -9,7 +9,7 @@ public with sharing virtual class BaseHandler extends Base implements TriggerHan
     private Boolean isActiveTrigger = true;
 
     public BaseHandler() {
-        String masterLabel = 'T_' + className;
+        String masterLabel = 'T_' + CLASS_NAME;
         List<ActiveSetting__mdt> activeSetttingList = [
             SELECT Id,
                    DeveloperName,
@@ -55,7 +55,7 @@ public with sharing virtual class BaseHandler extends Base implements TriggerHan
                 // none
             }
         } else {
-            info(className + 'did not work because ActiveSetting is false.');
+            info(CLASS_NAME + 'did not work because ActiveSetting is false.');
         }
     }
     /**

@@ -6,31 +6,11 @@ public with sharing virtual class Base {
     //-------------------------------------------------------
     // Variables & Constants
     //-------------------------------------------------------
-    public  final String  className = String.valueOf(this).substring(0,String.valueOf(this).indexOf(':'));
-    private final String  indent = ' ';
-    public  final Boolean isTest = Test.isRunningTest();
-    private final Boolean isDebug, isInfo, isWarn, isError;
+    public  final String  CLASS_NAME = String.valueOf(this).substring(0,String.valueOf(this).indexOf(':'));
+    private Logger logger = new Logger();
 
     public Base() {
-        List<ActiveSetting__mdt> activeSetttingList = [
-            SELECT Id,
-                   DeveloperName,
-                   isActive__c
-            FROM   ActiveSetting__mdt
-            WHERE  DeveloperName Like 'L_%'
-        ];
-        for(ActiveSetting__mdt activeSetting : activeSetttingList) {
-            switch on activeSetting.DeveloperName {
-                when 'L_Debug' {isDebug = activeSetting.isActive__c;}
-                when 'L_Info'  {isInfo  = activeSetting.isActive__c;}
-                when 'L_Warn'  {isWarn  = activeSetting.isActive__c;}
-                when 'L_Error' {isError = activeSetting.isActive__c;}
-                when else {
-                    warn(activeSetting.DeveloperName);
-                }
-            }
-        }
-        info('Class: ' + className);
+        info('Class: ' + CLASS_NAME);
     }
     //-------------------------------------------------------
     // Processing part
@@ -42,9 +22,7 @@ public with sharing virtual class Base {
      * @author Nakano Shoki
      */
     public void debug(Object message) {
-        if(isDebug || isTest) {
-            logger(Logginglevel.DEBUG, message);
-        }
+        logger.debug(Logginglevel.DEBUG, message);
     }
     /**
      * @description logger(level is INFO)
@@ -53,9 +31,7 @@ public with sharing virtual class Base {
      * @author Nakano Shoki
      */
     public void info(Object message) {
-        if(isInfo || isTest) {
-            logger(Logginglevel.INFO, message);
-        }
+        logger.debug(Logginglevel.INFO, message);
     }
     /**
      * @description logger(level is WARN)
@@ -64,9 +40,7 @@ public with sharing virtual class Base {
      * @author Nakano Shoki
      */
     public void warn(Object message) {
-        if(isWarn || isTest) {
-            logger(Logginglevel.WARN, message);
-        }
+        logger.debug(Logginglevel.WARN, message);
     }
     /**
      * @description logger(level is ERROR)
@@ -75,29 +49,7 @@ public with sharing virtual class Base {
      * @author Nakano Shoki
      */
     public void error(Object message) {
-        if(isError || isTest) {
-            logger(Logginglevel.ERROR, message);
-        }
-    }
-    /**
-     * @description logger
-     *      This process outputs the received value.
-     * @param LoggingLevel loggingLevel
-     * @param Object message
-     * @author Nakano Shoki
-     */
-    private void logger(LoggingLevel loggingLevel, Object message) {
-        System.debug(loggingLevel, message);
-        // System.debug(logLevel, logLevel.rightPad(6) + now() + indent + message);
-    }
-    /**
-     * @description Return the current local time
-     *      This process return the current local time.
-     * @return String(yyyy-mm-dd hh:mm:ss)
-     * @author Nakano Shoki
-     */
-    private String now() {
-        return Datetime.now().format('yyyy-mm-dd hh:mm:ss');
+        logger.debug(Logginglevel.ERROR, message);
     }
     /**
      * @description Exception Handler

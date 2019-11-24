@@ -11,7 +11,7 @@ public with sharing virtual class BaseAsyncJob extends Base implements Database.
     private final String JOB_STATUS_COMPLETED = 'Completed';
 
     public BaseAsyncJob() {
-        String masterLabel = 'A_' + className;
+        String masterLabel = 'A_' + CLASS_NAME;
         List<ActiveSetting__mdt> activeSetttingList = [
             SELECT Id,
                    DeveloperName,
