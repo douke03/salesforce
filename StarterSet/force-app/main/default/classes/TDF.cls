@@ -4,6 +4,17 @@
  */
 @isTest
 public class TDF {
+    /** All Profile(Map<Profile.Name, Profile>) */
+    static final Map<String, Profile> PROFILES = new Map<String, Profile>();
+    /**
+     * something write
+     */
+    public TDF() {
+        // Set Profiles
+        for(Profile pro : [SELECT ID, Name FROM Profile]) {
+            PROFILES.put(pro.Name, pro);
+        }
+    }
     /**
      * @description Create user instance for testing
      *      This process creates a test user instance with the received profile name.
@@ -11,8 +22,7 @@ public class TDF {
      * @author Nakano Shoki
      */
     public static User testUser(String profileName) {
-        List<String> profileNames = new List<String>();
-        profileNames.add(profileName);
+        List<String> profileNames = new List<String>{profileName};
         return userInstance(profileNames);
     }
     /**
@@ -31,13 +41,17 @@ public class TDF {
      * @author Nakano Shoki
      */
     public static User userInstance(List<String> profileNames) {
-        Profile pf = [
-            SELECT Id,
-                   Name
-            FROM   Profile
-            WHERE  Name IN :profileNames
-            LIMIT  1
-        ];
+        Profile profile = new Profile();
+        for(String profileName : profileNames) {
+            profile = PROFILES.get(profileName);
+            if(profile != null) {
+                break;
+            }
+        }
+        System.debug(profileNames);
+        for(Profile pro : PROFILES.values()) {
+            System.debug(pro);
+        }
         return new user(
             UserName          = 'test@dummydomain.com',
             Email             = 'test@dummydomain.com',
@@ -47,7 +61,7 @@ public class TDF {
             LocaleSidKey      = 'ja_JP',
             EmailEncodingKey  = 'UTF-8',
             LanguageLocaleKey = 'ja',
-            ProfileId         = pf.Id
+            ProfileId         = profile.Id
         );
     }
     /**
