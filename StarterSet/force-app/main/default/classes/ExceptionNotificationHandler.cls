@@ -2,7 +2,8 @@
  * Exception notification handler
  * @author Nakano Shoki
  */
-public without sharing class ExceptionNotificationHandler extends BaseHandler {
+public without sharing class ExceptionNotificationHandler
+    extends BaseHandler {
     /**
      * @description After insert
      *      Save as an ErrorLog__c when an ExceptionNotification__e is created.

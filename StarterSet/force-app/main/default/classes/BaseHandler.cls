@@ -2,7 +2,9 @@
  * Base for all handler classes
  * @author Nakano Shoki
  */
-public with sharing virtual class BaseHandler extends Base implements TriggerHandler {
+public with sharing virtual class BaseHandler
+    extends Base
+    implements TriggerHandler {
     //-------------------------------------------------------
     // Variables & Constants
     //-------------------------------------------------------

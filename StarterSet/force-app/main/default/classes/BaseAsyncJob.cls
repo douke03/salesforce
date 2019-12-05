@@ -2,7 +2,9 @@
  * Base for all AsyncJob classes
  * @author Nakano Shoki
  */
-public with sharing virtual class BaseAsyncJob extends Base implements Database.Stateful {
+public with sharing virtual class BaseAsyncJob
+    extends Base
+    implements Database.Stateful {
     //-------------------------------------------------------
     // CustomException & Variables
     //-------------------------------------------------------

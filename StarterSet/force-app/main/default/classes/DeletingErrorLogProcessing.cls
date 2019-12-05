@@ -2,7 +2,10 @@
  * Deleting error log
  * @author Nakano Shoki
  */
-public without sharing class DeletingErrorLogProcessing extends BaseAsyncJob implements DeletingErrorLog.SchedulableExecute, Database.Batchable<sObject> {
+public without sharing class DeletingErrorLogProcessing
+    extends BaseAsyncJob
+    implements DeletingErrorLog.SchedulableExecute,
+               Database.Batchable<sObject> {
     //-------------------------------------------------------
     // Variables & Schedulable
     //-------------------------------------------------------
@@ -23,13 +26,18 @@ public without sharing class DeletingErrorLogProcessing extends BaseAsyncJob imp
      */
     public Database.QueryLocator start(Database.BatchableContext bc) {
         info(CLASS_NAME + ': start');
-        Date d = date.today().addMonths(-MONTH_TO_KEEP_LOG);
-        Datetime baseDateToDelete = Datetime.newInstance(d.year(), d.month(), d.day());
-        String query = ' SELECT Id'
-                     + ' FROM   ErrorLog__c'
-                     + ' WHERE  CreatedDate <= ' + baseDateToDelete.format('yyyy-MM-dd\'T\'HH:mm:ss.000\'Z\'');
-        debug('query: ' + query);
-        return Database.getQueryLocator(query);
+        try {
+            Date d = date.today().addMonths(-MONTH_TO_KEEP_LOG);
+            Datetime baseDateToDelete = Datetime.newInstance(d.year(), d.month(), d.day());
+            String query = ' SELECT Id'
+                        + ' FROM   ErrorLog__c'
+                        + ' WHERE  CreatedDate <= ' + baseDateToDelete.format('yyyy-MM-dd\'T\'HH:mm:ss.000\'Z\'');
+            debug('query: ' + query);
+            return Database.getQueryLocator(query);
+        } catch(Exception e) {
+            exceptionHandler(e);
+            throw new AsyncJobException(e);
+        }
     }
     /**
      * @description Delete the records.
@@ -55,7 +63,12 @@ public without sharing class DeletingErrorLogProcessing extends BaseAsyncJob imp
      * @author Nakano Shoki
      */
     public void finish(Database.BatchableContext bc) {
-        info(CLASS_NAME + ': finish');
-        isSuccessfulCompletion(bc.getJobId());
+        try {
+            info(CLASS_NAME + ': finish');
+            isSuccessfulCompletion(bc.getJobId());
+        } catch(Exception e) {
+            exceptionHandler(e);
+            throw new AsyncJobException(e);
+        }
     }
 }

@@ -2,7 +2,11 @@
  * Class for schedule registration
  * @author Nakano Shoki
  */
-global with sharing class DeletingErrorLog Implements Schedulable {
+global with sharing class DeletingErrorLog
+    Implements Schedulable {
+    //-------------------------------------------------------
+    // Processing part
+    //-------------------------------------------------------
     public Interface SchedulableExecute {
         void execute(SchedulableContext sc);
     }
