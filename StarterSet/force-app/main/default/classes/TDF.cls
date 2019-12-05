@@ -9,7 +9,7 @@ public class TDF {
     /**
      * something write
      */
-    public TDF() {
+    static {
         // Set Profiles
         for(Profile pro : [SELECT ID, Name FROM Profile]) {
             PROFILES.put(pro.Name, pro);
