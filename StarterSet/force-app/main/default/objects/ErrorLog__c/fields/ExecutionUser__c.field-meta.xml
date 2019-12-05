@@ -3,7 +3,7 @@
     <fullName>ExecutionUser__c</fullName>
     <deleteConstraint>SetNull</deleteConstraint>
     <externalId>false</externalId>
-    <label>ExecutionUser</label>
+    <label>Execution User</label>
     <referenceTo>User</referenceTo>
     <relationshipName>ErrorLog_ExecutionUser</relationshipName>
     <required>false</required>

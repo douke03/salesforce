@@ -3,6 +3,6 @@
     <deploymentStatus>Deployed</deploymentStatus>
     <description>Exception発生時にログを保存するための一時保存用プラットフォームイベント</description>
     <eventType>HighVolume</eventType>
-    <label>ExceptionNotification</label>
+    <label>Exception Notification</label>
     <publishBehavior>PublishImmediately</publishBehavior>
 </CustomObject>
