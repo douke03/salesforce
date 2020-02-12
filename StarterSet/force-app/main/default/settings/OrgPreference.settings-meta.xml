@@ -62,7 +62,7 @@
     </preferences>
     <preferences>
         <settingName>NetworksEnabled</settingName>
-        <settingValue>false</settingValue>
+        <settingValue>true</settingValue>
     </preferences>
     <preferences>
         <settingName>NotesReservedPref01</settingName>
@@ -91,6 +91,10 @@
     <preferences>
         <settingName>PardotEnabled</settingName>
         <settingValue>false</settingValue>
+    </preferences>
+    <preferences>
+        <settingName>PortalUserShareOnCase</settingName>
+        <settingValue>true</settingValue>
     </preferences>
     <preferences>
         <settingName>RedirectionWarning</settingName>

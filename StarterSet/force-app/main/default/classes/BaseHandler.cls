@@ -49,12 +49,19 @@ public with sharing virtual class BaseHandler
                     when AFTER_UNDELETE {afterUndelete(Trigger.new);}
                 }
             } catch(Exception e) {
-                for(Integer i = 0, j = Trigger.new.size(); i < j; i++) {
-                    Trigger.new[i].addError('想定外のエラーが発生しました。システム管理者へお問い合わせください。');
+                switch on Trigger.operationType {
+                    when BEFORE_INSERT, BEFORE_UPDATE, AFTER_INSERT, AFTER_UPDATE, AFTER_UNDELETE {
+                        for(Integer i = 0, j = Trigger.new.size(); i < j; i++) {
+                            Trigger.new[i].addError('想定外のエラーが発生しました。システム管理者へお問い合わせください。');
+                        }
+                    }
+                    when BEFORE_DELETE, AFTER_DELETE {
+                        for(Integer i = 0, j = Trigger.old.size(); i < j; i++) {
+                            Trigger.old[i].addError('想定外のエラーが発生しました。システム管理者へお問い合わせください。');
+                        }
+                    }
                 }
                 exceptionHandler(e);
-            } finally {
-                // none
             }
         } else {
             info(CLASS_NAME + 'did not work because ActiveSetting is false.');

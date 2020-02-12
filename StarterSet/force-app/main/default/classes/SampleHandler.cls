@@ -25,9 +25,9 @@ public without sharing class SampleHandler
         Map<Id, Sample__c> sampleMap = (Map<Id, Sample__c>)newObjectMap;
         for(Sample__c sample : sampleMap.values()) {
             debug(sample);
-            for(Integer i = 0; i < 300; i++) {
-                Account acc = [SELECT Id FROM Account LIMIT1];
-            }
+            // for(Integer i = 0; i < 300; i++) {
+            //     Account acc = [SELECT Id FROM Account LIMIT1];
+            // }
             // sample.addError('test');
         }
     }
