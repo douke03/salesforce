@@ -9,6 +9,10 @@
     <isTLSv12RequiredCommunities>false</isTLSv12RequiredCommunities>
     <networkAccess>
         <ipRanges>
+            <end>202.32.149.196</end>
+            <start>202.32.149.196</start>
+        </ipRanges>
+        <ipRanges>
             <end>124.145.16.92</end>
             <start>124.145.16.92</start>
         </ipRanges>
@@ -56,7 +60,6 @@
         <lockSessionsToDomain>true</lockSessionsToDomain>
         <lockSessionsToIp>false</lockSessionsToIp>
         <lockerServiceCSP>true</lockerServiceCSP>
-        <lockerServiceFrozenRealm>false</lockerServiceFrozenRealm>
         <redirectionWarning>true</redirectionWarning>
         <referrerPolicy>true</referrerPolicy>
         <requireHttpOnly>false</requireHttpOnly>

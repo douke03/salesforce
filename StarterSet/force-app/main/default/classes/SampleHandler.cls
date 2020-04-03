@@ -31,4 +31,15 @@ public without sharing class SampleHandler
             // sample.addError('test');
         }
     }
+    /**
+     * @description Process after undelete
+     *      If implement AfterUndelete process, must override this process.
+     * @param List<sObject> newObjectList
+     * @author Nakano Shoki
+     */
+    public override void afterUndelete(List<sObject> newObjectList) {
+        for(sObject newObject : newObjectList) {
+            newObject.addError('test');
+        }
+    }
 }

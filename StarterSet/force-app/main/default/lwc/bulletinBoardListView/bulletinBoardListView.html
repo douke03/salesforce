@@ -1,0 +1,20 @@
+<template>
+    <lightning-card>
+        <header slot="title" class="header">お知らせ</header>
+        <lightning-accordion allow-multiple-sections-open>
+            <template if:true={bulletinBoards.data}>
+                <template for:each={bulletinBoards.data} for:item="bulletinBoard">
+                    <lightning-accordion-section key={bulletinBoard} name={bulletinBoard.Id} label={bulletinBoard.Subject__c}>
+                        <lightning-formatted-rich-text value={bulletinBoard.BodyText__c}></lightning-formatted-rich-text>
+                    </lightning-accordion-section>
+                </template>
+            </template>
+            <template if:true={bulletinBoards.error}>
+                <p>{contacts.error}</p>
+            </template>
+        </lightning-accordion>
+        <footer slot="footer">
+            すべて表示
+        </footer>
+    </lightning-card>
+</template>

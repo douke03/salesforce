@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>IsPublish__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF(
+    AND(
+        NOW() &gt; PublishDate__c,
+        IsExternalPublication__c
+    ),
+    TRUE,
+    FALSE
+)</formula>
+    <inlineHelpText>公開日を過ぎている AND 外部公開が許可されている場合 TRUE</inlineHelpText>
+    <label>IsPublish</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>
