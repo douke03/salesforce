@@ -5,38 +5,38 @@ private class LoggerTest {
     //-------------------------------------------------------
     private static User testUser = TDF.testUser(TDF.PROFILE_SYSTEM_ADMINISTRATOR);
 
-    @testSetup
-    static void setup() {
-    }
+    // @testSetup
+    // static void setup() {
+    // }
     //-------------------------------------------------------
     // Testing part
     //-------------------------------------------------------
     @isTest
     static void debugT01() {
         System.runAs(testUser) {
-            Logger logger = new Logger();
-            logger.debug(Logginglevel.DEBUG, 'debug');
+            Logger.debug(Logginglevel.DEBUG, 'debug');
         }
+        System.assert(true, 'Confirmed that it ended normally.');
     }
     @isTest
     static void debugT02() {
         System.runAs(testUser) {
-            Logger logger = new Logger();
-            logger.debug(Logginglevel.INFO, 'info');
+            Logger.debug(Logginglevel.INFO, 'info');
         }
+        System.assert(true, 'Confirmed that it ended normally.');
     }
     @isTest
     static void debugT03() {
         System.runAs(testUser) {
-            Logger logger = new Logger();
-            logger.debug(Logginglevel.WARN, 'warn');
+            Logger.debug(Logginglevel.WARN, 'warn');
         }
+        System.assert(true, 'Confirmed that it ended normally.');
     }
     @isTest
     static void debugT04() {
         System.runAs(testUser) {
-            Logger logger = new Logger();
-            logger.debug(Logginglevel.ERROR, 'error');
+            Logger.debug(Logginglevel.ERROR, 'error');
         }
+        System.assert(true, 'Confirmed that it ended normally.');
     }
 }

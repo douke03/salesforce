@@ -3,6 +3,7 @@
     <fullName>IsExternalPublication__c</fullName>
     <defaultValue>false</defaultValue>
     <externalId>false</externalId>
+    <inlineHelpText>コミュニティユーザーに対して公開したい場合チェックを付ける</inlineHelpText>
     <label>外部公開</label>
     <trackTrending>false</trackTrending>
     <type>Checkbox</type>

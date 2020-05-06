@@ -5,39 +5,39 @@ private class BaseTest {
     //-------------------------------------------------------
     private static User testUser = TDF.testUser(TDF.PROFILE_SYSTEM_ADMINISTRATOR);
 
-    @testSetup
-    static void setup() {
-    }
+    // @testSetup
+    // static void setup() {
+    // }
     //-------------------------------------------------------
     // Testing part
     //-------------------------------------------------------
     @isTest
     static void debugT01() {
         System.runAs(testUser) {
-            Base base = new Base();
-            base.debug('debug');
+            Base.debug('debug');
         }
+        System.assert(true, 'Confirmed that it ended normally.');
     }
     @isTest
     static void infoT01() {
         System.runAs(testUser) {
-            Base base = new Base();
-            base.info('info');
+            Base.info('info');
         }
+        System.assert(true, 'Confirmed that it ended normally.');
     }
     @isTest
     static void warnT01() {
         System.runAs(testUser) {
-            Base base = new Base();
-            base.warn('warn');
+            Base.warn('warn');
         }
+        System.assert(true, 'Confirmed that it ended normally.');
     }
     @isTest
     static void errorT01() {
         System.runAs(testUser) {
-            Base base = new Base();
-            base.error('error');
+            Base.error('error');
         }
+        System.assert(true, 'Confirmed that it ended normally.');
     }
     @isTest
     static void exceptionHandlerT01() {
@@ -47,11 +47,11 @@ private class BaseTest {
                 Account a = new Account();
                 insert a;
             } catch(Exception e) {
-                Base base = new Base();
-                base.exceptionHandler(e);
+                Base.exceptionHandler(e);
             }
             Test.stopTest();
         }
+        System.assert(true, 'Confirmed that it ended normally.');
     }
     @isTest
     static void saveExceptionInfoT01() {
@@ -62,10 +62,10 @@ private class BaseTest {
                 Account a = new Account();
                 insert a;
             } catch(Exception e) {
-                Base base = new Base();
-                base.saveExceptionInfo(e);
+                Base.saveExceptionInfo(e);
             }
             Test.stopTest();
         }
+        System.assert(true, 'Confirmed that it ended normally.');
     }
 }

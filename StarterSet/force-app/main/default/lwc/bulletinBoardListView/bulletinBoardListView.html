@@ -1,20 +1,61 @@
 <template>
-    <lightning-card>
-        <header slot="title" class="header">お知らせ</header>
-        <lightning-accordion allow-multiple-sections-open>
-            <template if:true={bulletinBoards.data}>
-                <template for:each={bulletinBoards.data} for:item="bulletinBoard">
-                    <lightning-accordion-section key={bulletinBoard} name={bulletinBoard.Id} label={bulletinBoard.Subject__c}>
-                        <lightning-formatted-rich-text value={bulletinBoard.BodyText__c}></lightning-formatted-rich-text>
-                    </lightning-accordion-section>
-                </template>
-            </template>
-            <template if:true={bulletinBoards.error}>
-                <p>{contacts.error}</p>
-            </template>
-        </lightning-accordion>
-        <footer slot="footer">
-            すべて表示
-        </footer>
+    <lightning-card title="お知らせ">
+        <template if:true={bulletinBoards.data}>
+            <table class="slds-table slds-table_cell-buffer slds-table_bordered" style="padding: 5px;">
+                <thead>
+                    <tr class="slds-line-height_reset">
+                        <th class="" scope="col">
+                            <div class="slds-truncate">タイトル</div>
+                        </th>
+                        <th class="" scope="col">
+                            <div class="slds-truncate">公開日</div>
+                        </th>
+                        <th class="" scope="col">
+                            <div class="slds-truncate">更新日</div>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <template for:each={bulletinBoards.data} for:item="bulletinBoard">
+                        <tr key={bulletinBoard.Id} class="slds-hint-parent">
+                            <th scope="row">
+                                <div class="slds-truncate">
+                                    <a data-subject={bulletinBoard.Subject__c} data-body-text={bulletinBoard.BodyText__c} onclick={openModal}>{bulletinBoard.Subject__c}</a>
+                                </div>
+                            </th>
+                            <td>
+                                <div class="slds-truncate">
+                                    <lightning-formatted-date-time value={bulletinBoard.PublishDate__c}></lightning-formatted-date-time>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="slds-truncate">
+                                    <lightning-formatted-date-time value={bulletinBoard.LastModifiedDate}></lightning-formatted-date-time>
+                                </div>
+                            </td>
+                        </tr>
+                    </template>
+                </tbody>
+            </table>
+        </template>
+        <template if:true={bulletinBoards.error}>
+            <p>{bulletinBoards.error.body.message}</p>
+        </template>
+        <template if:true={openmodel}>
+            <section id="outsideOfModal" role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open slds-modal_medium">
+                <div class="slds-modal__container">
+                    <header class="slds-modal__header">
+                        <h2 id="modal-heading-01" class="slds-modal__title slds-hyphenate">{subject}</h2>
+                    </header>
+                    <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                        <lightning-formatted-rich-text value={bodyText}></lightning-formatted-rich-text>
+                    </div>
+                    <footer class="slds-modal__footer">
+                        <button id="closeButton" class="slds-button slds-button_neutral" onclick={closeModal}>閉じる</button>
+                    </footer>
+                </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+        </template>
     </lightning-card>
 </template>

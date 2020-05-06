@@ -65,6 +65,10 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>CountNumberView</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>CreatePackageXml</apexClass>
         <enabled>false</enabled>
     </classAccesses>
@@ -181,12 +185,27 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>BulletinBoard__c.IsAllowExternalPublish__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>BulletinBoard__c.IsAllowInternalPublish__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>BulletinBoard__c.IsExternalPublication__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>BulletinBoard__c.IsPublish__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>BulletinBoard__c.Tag__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -246,6 +265,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Sample__c.LongTextArea__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Sample__c.Percent__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -263,6 +287,21 @@
         <editable>true</editable>
         <field>ValidationObject__c.QueryException__c</field>
         <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>ViewHistory__c.ViewCount__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>ViewHistory__c.ViewRecord__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>ViewHistory__c.ViewUser__c</field>
+        <readable>false</readable>
     </fieldPermissions>
     <pageAccesses>
         <apexPage>AnswersHome</apexPage>

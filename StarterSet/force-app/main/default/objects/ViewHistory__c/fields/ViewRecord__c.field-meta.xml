@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ViewRecord__c</fullName>
+    <externalId>false</externalId>
+    <formula>LEFT($Api.Partner_Server_URL_350, FIND(&quot;/services/Soap/&quot;, $Api.Partner_Server_URL_350)) + ViewRecordId__c</formula>
+    <label>参照したレコード</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

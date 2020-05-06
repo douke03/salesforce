@@ -22,6 +22,9 @@
             ],
             "c/bulletinBoardListView": [
                 "bulletinBoardListView/bulletinBoardListView.js"
+            ],
+            "c/countNumberView": [
+                "countNumberView/countNumberView.js"
             ]
         },
         "experimentalDecorators": true

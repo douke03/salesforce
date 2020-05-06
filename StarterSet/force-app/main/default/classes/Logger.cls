@@ -6,10 +6,10 @@ public with sharing class Logger {
     //-------------------------------------------------------
     // Variables & Constants
     //-------------------------------------------------------
-    private final Boolean IS_DEBUG, IS_INFO, IS_WARN, IS_ERROR;
-    private final Boolean IS_TEST = Test.isRunningTest();
+    private static final Boolean IS_DEBUG, IS_INFO, IS_WARN, IS_ERROR;
+    private static final Boolean IS_TEST = Test.isRunningTest();
 
-    public Logger() {
+    static {
         List<ActiveSetting__mdt> activeSetttingList = [
             SELECT Id,
                    DeveloperName,
@@ -39,7 +39,7 @@ public with sharing class Logger {
      * @param Object message
      * @author Nakano Shoki
      */
-    public void debug(LoggingLevel loggingLevel, Object message) {
+    public static void debug(LoggingLevel loggingLevel, Object message) {
         switch on loggingLevel {
             when DEBUG {
                 if(IS_DEBUG || IS_TEST) {

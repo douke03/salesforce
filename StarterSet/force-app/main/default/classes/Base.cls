@@ -6,8 +6,7 @@ public with sharing virtual class Base {
     //-------------------------------------------------------
     // Variables & Constants
     //-------------------------------------------------------
-    public  final String  CLASS_NAME = String.valueOf(this).substring(0,String.valueOf(this).indexOf(':'));
-    private Logger logger = new Logger();
+    public final String CLASS_NAME = String.valueOf(this).substring(0,String.valueOf(this).indexOf(':'));
 
     public Base() {
         info('Class: ' + CLASS_NAME);
@@ -21,8 +20,8 @@ public with sharing virtual class Base {
      * @param Object message
      * @author Nakano Shoki
      */
-    public void debug(Object message) {
-        logger.debug(Logginglevel.DEBUG, message);
+    public static void debug(Object message) {
+        Logger.debug(Logginglevel.DEBUG, message);
     }
     /**
      * @description logger(level is INFO)
@@ -30,8 +29,8 @@ public with sharing virtual class Base {
      * @param Object message
      * @author Nakano Shoki
      */
-    public void info(Object message) {
-        logger.debug(Logginglevel.INFO, message);
+    public static void info(Object message) {
+        Logger.debug(Logginglevel.INFO, message);
     }
     /**
      * @description logger(level is WARN)
@@ -39,8 +38,8 @@ public with sharing virtual class Base {
      * @param Object message
      * @author Nakano Shoki
      */
-    public void warn(Object message) {
-        logger.debug(Logginglevel.WARN, message);
+    public static void warn(Object message) {
+        Logger.debug(Logginglevel.WARN, message);
     }
     /**
      * @description logger(level is ERROR)
@@ -48,8 +47,8 @@ public with sharing virtual class Base {
      * @param Object message
      * @author Nakano Shoki
      */
-    public void error(Object message) {
-        logger.debug(Logginglevel.ERROR, message);
+    public static void error(Object message) {
+        Logger.debug(Logginglevel.ERROR, message);
     }
     /**
      * @description Exception Handler
@@ -57,7 +56,7 @@ public with sharing virtual class Base {
      * @param Exception e
      * @author Nakano Shoki
      */
-    public void exceptionHandler(Exception e) {
+    public static void exceptionHandler(Exception e) {
         error('Exception.getCause(): ' + e.getCause());
         error('Exception.getTypeName(): ' + e.getTypeName());
         error('Exception.getStackTraceString(): ' + e.getStackTraceString());
@@ -73,7 +72,7 @@ public with sharing virtual class Base {
      * @param Exception e
      * @author Nakano Shoki
      */
-    public void saveExceptionInfo(Exception e) {
+    public static void saveExceptionInfo(Exception e) {
         ExceptionNotification__e en = new ExceptionNotification__e(
             ExecutionUserID__c = UserInfo.getUserId(),
             TypeName__c        = e.getTypeName(),

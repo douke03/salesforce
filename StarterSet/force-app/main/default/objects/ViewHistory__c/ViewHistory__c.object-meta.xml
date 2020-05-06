@@ -152,11 +152,11 @@
     <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
-    <externalSharingModel>Read</externalSharingModel>
-    <label>SFDC掲示板</label>
+    <externalSharingModel>Private</externalSharingModel>
+    <label>参照履歴</label>
     <nameField>
-        <displayFormat>{YYYY}{MM}-{00000000}</displayFormat>
-        <label>掲示板</label>
+        <displayFormat>{00000000}</displayFormat>
+        <label>参照履歴</label>
         <type>AutoNumber</type>
     </nameField>
     <searchLayouts/>
