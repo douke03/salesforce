@@ -20,7 +20,7 @@
                         <tr key={bulletinBoard.Id} class="slds-hint-parent">
                             <th scope="row">
                                 <div class="slds-truncate">
-                                    <a data-subject={bulletinBoard.Subject__c} data-body-text={bulletinBoard.BodyText__c} onclick={openModal}>{bulletinBoard.Subject__c}</a>
+                                    <a data-id={bulletinBoard.Id} data-subject={bulletinBoard.Subject__c} data-body-text={bulletinBoard.BodyText__c} onclick={openModal}>{bulletinBoard.Subject__c}</a>
                                 </div>
                             </th>
                             <td>
@@ -49,6 +49,7 @@
                     </header>
                     <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
                         <lightning-formatted-rich-text value={bodyText}></lightning-formatted-rich-text>
+                        <a href={recordUrl}>詳細ページ</a>
                     </div>
                     <footer class="slds-modal__footer">
                         <button id="closeButton" class="slds-button slds-button_neutral" onclick={closeModal}>閉じる</button>
