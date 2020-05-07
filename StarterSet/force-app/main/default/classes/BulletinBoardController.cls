@@ -24,6 +24,8 @@ public with sharing class BulletinBoardController {
             '        Name,' +
             '        Subject__c,' +
             '        BodyText__c,' +
+            '        Type__c,' +
+            '        Tag__c,' +
             '        PublishDate__c,' +
             '        LastModifiedDate' +
             ' FROM   BulletinBoard__c';
