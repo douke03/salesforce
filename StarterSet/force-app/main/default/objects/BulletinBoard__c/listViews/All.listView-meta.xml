@@ -7,6 +7,7 @@
     <columns>IsExternalPublication__c</columns>
     <columns>NoticePostingPeriod__c</columns>
     <columns>PublicationOrder__c</columns>
+    <columns>IsAllowInternalPublish__c</columns>
     <columns>IsAllowExternalPublish__c</columns>
     <filterScope>Everything</filterScope>
     <label>すべて選択</label>
