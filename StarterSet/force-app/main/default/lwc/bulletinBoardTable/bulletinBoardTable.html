@@ -1,0 +1,41 @@
+<template>
+    <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-no-row-hover">
+        <thead>
+            <tr class="slds-line-height_reset">
+                <th class="th-subject" scope="col">
+                    <div class="slds-truncate">タイトル</div>
+                </th>
+                <th class="th-date" scope="col">
+                    <div class="slds-truncate">公開日</div>
+                </th>
+                <th class="th-date" scope="col">
+                    <div class="slds-truncate">更新日</div>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <template for:each={bulletinBoards} for:item="bulletinBoard">
+                <tr key={bulletinBoard.Id} class="slds-hint-parent">
+                    <td>
+                        <div class="slds-truncate">
+                            <a class="subject" data-id={bulletinBoard.Id} data-subject={bulletinBoard.Subject__c} data-body-text={bulletinBoard.BodyText__c} onclick={openModal}>[{bulletinBoard.Type__c}] {bulletinBoard.Subject__c}</a>
+                            <div class="badge">
+                                <c-badge badge-value={bulletinBoard.Tag__c}></c-badge>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="slds-truncate">
+                            <lightning-formatted-date-time value={bulletinBoard.PublishDate__c}></lightning-formatted-date-time>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="slds-truncate">
+                            <lightning-formatted-date-time value={bulletinBoard.LastModifiedDate}></lightning-formatted-date-time>
+                        </div>
+                    </td>
+                </tr>
+            </template>
+        </tbody>
+    </table>
+</template>

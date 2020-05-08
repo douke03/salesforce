@@ -16,7 +16,38 @@ public with sharing class BulletinBoardController {
      * @author Nakano Shoki
      */
     @AuraEnabled(cacheable=true)
-    public static List<BulletinBoard__c> getImportantBulletinBoardList() {
+    public static List<BulletinBoard__c> getBBData() {
+        String userType = UserInfo.getUserType();
+        Datetime now = system.now();
+        String sql =
+            ' SELECT Id,' +
+            '        Name,' +
+            '        Subject__c,' +
+            '        BodyText__c,' +
+            '        Type__c,' +
+            '        Tag__c,' +
+            '        PublishDate__c,' +
+            '        LastModifiedDate' +
+            ' FROM   BulletinBoard__c';
+        if(userType == 'Standard') {
+            sql = sql + ' WHERE  IsAllowInternalPublish__c = true';
+        } else {
+            sql = sql + ' WHERE  IsAllowExternalPublish__c = true';
+        }
+        sql = sql +
+            ' WITH   SECURITY_ENFORCED' +
+            ' ORDER BY PublicationOrder__c,' +
+            '          PublishDate__c DESC,' +
+            '          CreatedDate DESC';
+        return Database.query(sql);
+    }
+    /**
+     * @description test
+     * @param none
+     * @author Nakano Shoki
+     */
+    @AuraEnabled(cacheable=true)
+    public static List<BulletinBoard__c> getImportantBBData() {
         String userType = UserInfo.getUserType();
         Datetime now = system.now();
         String sql =

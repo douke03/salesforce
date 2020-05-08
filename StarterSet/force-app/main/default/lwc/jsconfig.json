@@ -20,14 +20,20 @@
             "c/data": [
                 "data/data.js"
             ],
-            "c/bulletinBoardListView": [
-                "bulletinBoardListView/bulletinBoardListView.js"
-            ],
             "c/countNumberView": [
                 "countNumberView/countNumberView.js"
             ],
             "c/badge": [
                 "badge/badge.js"
+            ],
+            "c/bulletinBoard": [
+                "bulletinBoard/bulletinBoard.js"
+            ],
+            "c/bulletinBoardImportant": [
+                "bulletinBoardImportant/bulletinBoardImportant.js"
+            ],
+            "c/bulletinBoardTable": [
+                "bulletinBoardTable/bulletinBoardTable.js"
             ]
         },
         "experimentalDecorators": true
