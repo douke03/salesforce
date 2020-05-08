@@ -1,5 +1,10 @@
 <template>
     <lightning-card title="お知らせ">
+        <template if:false={bulletinBoards.data}>
+            <div>
+                <lightning-spinner alternative-text="Loading" size="medium"></lightning-spinner>
+            </div>
+        </template>
         <template if:true={bulletinBoards.data}>
             <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-no-row-hover">
                 <thead>
