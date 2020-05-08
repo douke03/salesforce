@@ -44,7 +44,7 @@
         <template if:true={bulletinBoards.error}>
             <p>{bulletinBoards.error.body.message}</p>
         </template>
-        <template if:true={openmodel}>
+        <template if:true={isOpenmodel}>
             <section id="outsideOfModal" role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open slds-modal_medium">
                 <div class="slds-modal__container">
                     <header class="slds-modal__header">
@@ -53,7 +53,6 @@
                     <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
                         <lightning-formatted-rich-text value={bodyText}></lightning-formatted-rich-text>
                     </div>
-                    <!-- <footer class="slds-modal__footer"> -->
                     <footer class="slds-modal__footer">
                         <button id="closeButton" class="slds-button slds-button_neutral" onclick={closeModal}>閉じる</button>
                         <a class="slds-button slds-button_neutral" href={recordUrl}>詳細ページ</a>
