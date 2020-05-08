@@ -27,14 +27,11 @@ public with sharing class CountNumberView extends Base{
                 LIMIT 1
             ];
             if(vh.size() != 0) {
-                debug('NON NULL');
                 return vh[0];
             } else {
-                debug('NULL');
                 return new ViewHistory__c();
             }
         } catch (Exception e) {
-            debug(e);
             exceptionHandler(e);
             return new ViewHistory__c();
         }

@@ -25,6 +25,12 @@
             ],
             "c/countNumberView": [
                 "countNumberView/countNumberView.js"
+            ],
+            "c/badge": [
+                "badge/badge.js"
+            ],
+            "c/modalInfoMedium": [
+                "modalInfoMedium/modalInfoMedium.js"
             ]
         },
         "experimentalDecorators": true
