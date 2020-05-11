@@ -1,42 +1,93 @@
 import { LightningElement, track, wire } from 'lwc';
 import getBulletinBoardType from '@salesforce/apex/BulletinBoardController.getBBType';
 import getBulletinBoardList from '@salesforce/apex/BulletinBoardController.getBBData';
+import getBulletinBoardListSosl from '@salesforce/apex/BulletinBoardController.getBBDataSosl';
 
 export default class bulletinBoard extends LightningElement {
-    typeList;
+    searchText = '';
+    @track searchTypeJson = [];
     @track isOpenmodel = false;
+    @track typeList;
+    @track bulletinBoards;
+    @track error;
     @track subject;
     @track bodyText;
     @track recordUrl;
-    // @wire(getBulletinBoardType) bulletinBoardTypes;
     @wire(getBulletinBoardType)
-        test({data, error}) {
+        wireTypes({data, error}) {
             if(data) {
-                window.console.log('data');
-                window.console.log(data);
+                this.typeList = data;
+                for(let key of Object.keys(data)) {
+                    let json = {
+                        type: data[key].Type__c,
+                        isSelected: 'true'
+                    };
+                    this.searchTypeJson.push(json);
+                }
             } else if(error) {
-                window.console.log('error');
                 window.console.log(error);
             }
         }
-    @wire(getBulletinBoardList) bulletinBoards;
-    connectedCallback() {
-        window.console.log('connectedCallback');
-        // for(let bbtKey of Object.keys(bulletinBoardTypes)) {
-        //     window.console.log(bulletinBoardTypes[bbtKey].Type__c);
-        //   }
-    }
+    @wire(getBulletinBoardList)
+        wireBBData({data, error}) {
+            if(data) {
+                this.bulletinBoards = data;
+            } else if(error) {
+                this.error = error;
+            }
+        }
     clickedType(event) {
-        window.console.log('test');
-        window.console.log(event.detail.type);
-        window.console.log(event.detail.isSelected);
-        // if(this.isSelected) {
-        //     event.currentTarget.selected = false;
-        //     event.currentTarget.variant = 'inverse';
-        // } else {
-        //     event.currentTarget.selected = true;
-        //     event.currentTarget.variant = 'brand';
-        // }
+        this.searchTypeJson.find(searchTypeJson => {
+            if(searchTypeJson.type == event.detail.type){
+                searchTypeJson.isSelected = event.detail.isSelected
+            };
+        });
+        if(1 < this.searchText.trim().length) {
+            getBulletinBoardListSosl({
+                keyword : this.searchText,
+                typeJson : JSON.stringify(this.searchTypeJson)
+            })
+            .then(result => {
+                this.bulletinBoards = result;
+                this.error = undefined;
+            })
+            .catch(error => {
+                window.console.log('error');
+                this.bulletinBoards = undefined;
+                this.error = error;
+            });
+        } else {
+            getBulletinBoardList({
+                typeJson : JSON.stringify(this.searchTypeJson)
+            })
+            .then(result => {
+                this.bulletinBoards = result;
+                this.error = undefined;
+            })
+            .catch(error => {
+                window.console.log('error');
+                this.bulletinBoards = undefined;
+                this.error = error;
+            });
+        }
+    }
+    test(event) {
+        this.searchText = event.target.value;
+        if(1 < this.searchText.trim().length) {
+            getBulletinBoardListSosl({
+                keyword : this.searchText,
+                typeJson : JSON.stringify(this.searchTypeJson)
+            })
+            .then(result => {
+                this.bulletinBoards = result;
+                this.error = undefined;
+            })
+            .catch(error => {
+                window.console.log('error');
+                this.bulletinBoards = undefined;
+                this.error = error;
+            });
+        }
     }
     openModalHandler(event) {
         this.subject = event.detail.subject;
