@@ -6,22 +6,26 @@ public with sharing class BulletinBoardController {
     //-------------------------------------------------------
     // Variables & Constants
     //-------------------------------------------------------
-    // public BulletinBoardController() {}
+    private static final String USER_TYPE;
+
+    static {
+        USER_TYPE = UserInfo.getUserType();
+    }
     //-------------------------------------------------------
     // Processing part
     //-------------------------------------------------------
     /**
-     * @description test
+     * @description
+     *      This process returns BulletinBoard__c.Type__c.
      * @param none
      * @author Nakano Shoki
      */
     @AuraEnabled(cacheable=true)
     public static List<BulletinBoard__c> getBBType() {
-        String userType = UserInfo.getUserType();
         String soql =
             ' SELECT Type__c' +
             ' FROM   BulletinBoard__c';
-        if(userType == 'Standard') {
+        if(USER_TYPE == 'Standard') {
             soql += ' WHERE  IsAllowInternalPublish__c = true';
         } else {
             soql += ' WHERE  IsAllowExternalPublish__c = true';
@@ -32,14 +36,14 @@ public with sharing class BulletinBoardController {
         return Database.query(soql);
     }
     /**
-     * @description test
-     * @param none
+     * @description
+     *      This process returns BulletinBoard__c records.
+     * @param String typeJson(allow null)
      * @author Nakano Shoki
      */
     @AuraEnabled(cacheable=true)
     public static List<BulletinBoard__c> getBBData(String typeJson) {
         List<String> types = jsonToTypeList(typeJson);
-        String userType = UserInfo.getUserType();
         String soql =
             ' SELECT Id,' +
             '        Name,' +
@@ -50,7 +54,7 @@ public with sharing class BulletinBoardController {
             '        PublishDate__c,' +
             '        LastModifiedDate' +
             ' FROM   BulletinBoard__c';
-        if(userType == 'Standard') {
+        if(USER_TYPE == 'Standard') {
             soql += ' WHERE  IsAllowInternalPublish__c = true';
         } else {
             soql += ' WHERE  IsAllowExternalPublish__c = true';
@@ -65,13 +69,13 @@ public with sharing class BulletinBoardController {
         return Database.query(soql);
     }
     /**
-     * @description test
+     * @description
+     *      This process returns important BulletinBoard__c records.
      * @param none
      * @author Nakano Shoki
      */
     @AuraEnabled(cacheable=true)
     public static List<BulletinBoard__c> getImportantBBData() {
-        String userType = UserInfo.getUserType();
         Datetime now = system.now();
         String soql =
             ' SELECT Id,' +
@@ -83,7 +87,7 @@ public with sharing class BulletinBoardController {
             '        PublishDate__c,' +
             '        LastModifiedDate' +
             ' FROM   BulletinBoard__c';
-        if(userType == 'Standard') {
+        if(USER_TYPE == 'Standard') {
             soql += ' WHERE  IsAllowInternalPublish__c = true';
         } else {
             soql += ' WHERE  IsAllowExternalPublish__c = true';
@@ -96,8 +100,10 @@ public with sharing class BulletinBoardController {
         return Database.query(soql);
     }
     /**
-     * @description test
-     * @param none
+     * @description
+     *      This process returns BulletinBoard__c records.
+     * @param String keyword(not allow null)
+     * @param String typeJson(allow null)
      * @author Nakano Shoki
      */
     @AuraEnabled(cacheable=false)
@@ -108,7 +114,7 @@ public with sharing class BulletinBoardController {
             ' FIND :keyword IN ALL FIELDS';
         sosl += ' RETURNING' +
                 '     BulletinBoard__c(Id, Name, Subject__c, BodyText__c, Type__c, Tag__c, PublishDate__c, LastModifiedDate';
-        if(userType == 'Standard') {
+        if(USER_TYPE == 'Standard') {
             sosl += ' WHERE  IsAllowInternalPublish__c = true';
         } else {
             sosl += ' WHERE  IsAllowExternalPublish__c = true';
@@ -125,8 +131,9 @@ public with sharing class BulletinBoardController {
         return (List<BulletinBoard__c>)searchList[0];
     }
     /**
-     * @description test
-     * @param String typeJson
+     * @description
+     *      This process converts String JSON into String List.
+     * @param String typeJson(allow null)
      * @author Nakano Shoki
      */
     private static List<String> jsonToTypeList(String typeJson) {

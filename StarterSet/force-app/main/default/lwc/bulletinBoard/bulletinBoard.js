@@ -43,7 +43,7 @@ export default class bulletinBoard extends LightningElement {
             };
         });
         if(1 < this.searchText.trim().length) {
-            getBulletinBoardListSosl({
+            getBBListSosl({
                 keyword : this.searchText,
                 typeJson : JSON.stringify(this.searchTypeJson)
             })
@@ -71,11 +71,24 @@ export default class bulletinBoard extends LightningElement {
             });
         }
     }
-    test(event) {
+    inputText(event) {
         this.searchText = event.target.value;
         if(1 < this.searchText.trim().length) {
             getBulletinBoardListSosl({
                 keyword : this.searchText,
+                typeJson : JSON.stringify(this.searchTypeJson)
+            })
+            .then(result => {
+                this.bulletinBoards = result;
+                this.error = undefined;
+            })
+            .catch(error => {
+                window.console.log('error');
+                this.bulletinBoards = undefined;
+                this.error = error;
+            });
+        } else {
+            getBulletinBoardList({
                 typeJson : JSON.stringify(this.searchTypeJson)
             })
             .then(result => {

@@ -6,21 +6,23 @@
             </div>
         </template>
         <template if:true={typeList}>
+            <div style="margin: 4px 8px;">
+                <lightning-input
+                    class="slds-m-bottom_small"
+                    type="search"
+                    onchange={inputText}
+                    variant="label-hidden"
+                    label="Search"
+                    placeholder="Search"
+                    value={searchText}>
+                </lightning-input>
+            </div>
             <div style="margin: 4px;">
                 <template for:each={typeList} for:item="type">
                     <span key={type} style="margin: 4px;">
                         <c-bulletin-board-button-stateful type={type.Type__c} onclickedtype={clickedType}></c-bulletin-board-button-stateful>
                     </span>
                 </template>
-                <lightning-input
-                    type="search"
-                    onchange={test}
-                    variant="label-hidden"
-                    class="slds-m-bottom_small"
-                    label="Search"
-                    placeholder="Search for bears"
-                    value={searchText}>
-                </lightning-input>
             </div>
         </template>
         <template if:true={bulletinBoards}>
