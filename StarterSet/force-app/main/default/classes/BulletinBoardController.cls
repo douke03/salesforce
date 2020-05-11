@@ -1,5 +1,7 @@
 /**
  * BulletinBoardController
+ * @description
+ *      This class is a controller class for BulletinBoard Component.
  * @author Nakano Shoki
  */
 public with sharing class BulletinBoardController {
@@ -137,6 +139,7 @@ public with sharing class BulletinBoardController {
      * @author Nakano Shoki
      */
     private static List<String> jsonToTypeList(String typeJson) {
+        System.debug(typeJson);
         List<String> types = new List<String>();
         if(String.isNotBlank(typeJson)) {
             List<Object> typeMapList = (List<Object>)JSON.deserializeUntyped(typeJson);
