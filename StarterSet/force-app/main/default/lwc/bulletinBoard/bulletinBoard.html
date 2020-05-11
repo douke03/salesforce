@@ -5,6 +5,15 @@
                 <lightning-spinner alternative-text="Loading" size="medium"></lightning-spinner>
             </div>
         </template>
+        <template if:true={bulletinBoardTypes.data}>
+            <div style="margin: 4px;">
+                <template for:each={bulletinBoardTypes.data} for:item="bulletinBoardType">
+                    <span key={bulletinBoardType} style="margin: 4px;">
+                        <c-bulletin-board-button-stateful type={bulletinBoardType.Type__c} onclickedtype={clickedType}></c-bulletin-board-button-stateful>
+                    </span>
+                </template>
+            </div>
+        </template>
         <template if:true={bulletinBoards.data}>
             <c-bulletin-board-table bulletin-boards={bulletinBoards.data} onopenmodal={openModalHandler}></c-bulletin-board-table>
         </template>

@@ -1,0 +1,15 @@
+table{
+    width: 100%;
+    padding: 5px;
+    table-layout: fixed;
+}
+.th-subject{
+    width: auto;
+}
+.th-date{
+    width: 120px;
+}
+.badge{
+    margin-top: 4px;
+    margin-left: 16px;
+}

@@ -3,7 +3,7 @@ import { LightningElement, api } from 'lwc';
 export default class bulletinBoardTable extends LightningElement {
     @api bulletinBoards;
     openModal(event) {
-        const selectedEvent = new CustomEvent("openmodal", {
+        const ce = new CustomEvent("openmodal", {
             detail: {
                 subject: event.currentTarget.dataset.subject,
                 bodyText: event.currentTarget.dataset.bodyText,
@@ -11,6 +11,6 @@ export default class bulletinBoardTable extends LightningElement {
                 isOpenmodel: true
             }
         });
-        this.dispatchEvent(selectedEvent);
+        this.dispatchEvent(ce);
     }
 }
