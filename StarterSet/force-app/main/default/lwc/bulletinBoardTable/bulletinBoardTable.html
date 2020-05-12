@@ -19,9 +19,11 @@
                     <td>
                         <div class="slds-truncate">
                             <a class="subject" data-id={bulletinBoard.Id} data-subject={bulletinBoard.Subject__c} data-body-text={bulletinBoard.BodyText__c} onclick={openModal}>[{bulletinBoard.Type__c}] {bulletinBoard.Subject__c}</a>
-                            <div class="badge">
-                                <c-badge badge-value={bulletinBoard.Tag__c}></c-badge>
-                            </div>
+                            <template if:true={bulletinBoard.Tag__c}>
+                                <div class="badge">
+                                    <c-badge badge-value={bulletinBoard.Tag__c}></c-badge>
+                                </div>
+                            </template>
                         </div>
                     </td>
                     <td>
