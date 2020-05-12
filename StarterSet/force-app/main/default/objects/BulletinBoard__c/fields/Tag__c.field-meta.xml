@@ -11,6 +11,96 @@
         <valueSetDefinition>
             <sorted>false</sorted>
             <value>
+                <fullName>Chatter</fullName>
+                <default>false</default>
+                <label>Chatter</label>
+            </value>
+            <value>
+                <fullName>Knowledge</fullName>
+                <default>false</default>
+                <label>Knowledge</label>
+            </value>
+            <value>
+                <fullName>Salesforce</fullName>
+                <default>false</default>
+                <label>Salesforce</label>
+            </value>
+            <value>
+                <fullName>ToDo</fullName>
+                <default>false</default>
+                <label>ToDo</label>
+            </value>
+            <value>
+                <fullName>カレンダー</fullName>
+                <default>false</default>
+                <label>カレンダー</label>
+            </value>
+            <value>
+                <fullName>キャンペーン</fullName>
+                <default>false</default>
+                <label>キャンペーン</label>
+            </value>
+            <value>
+                <fullName>キャンペーンメンバー</fullName>
+                <default>false</default>
+                <label>キャンペーンメンバー</label>
+            </value>
+            <value>
+                <fullName>ケース</fullName>
+                <default>false</default>
+                <label>ケース</label>
+            </value>
+            <value>
+                <fullName>コミュニティ</fullName>
+                <default>false</default>
+                <label>コミュニティ</label>
+            </value>
+            <value>
+                <fullName>ファイル</fullName>
+                <default>false</default>
+                <label>ファイル</label>
+            </value>
+            <value>
+                <fullName>プロファイル</fullName>
+                <default>false</default>
+                <label>プロファイル</label>
+            </value>
+            <value>
+                <fullName>ホーム</fullName>
+                <default>false</default>
+                <label>ホーム</label>
+            </value>
+            <value>
+                <fullName>ユーザ</fullName>
+                <default>false</default>
+                <label>ユーザ</label>
+            </value>
+            <value>
+                <fullName>リード</fullName>
+                <default>false</default>
+                <label>リード</label>
+            </value>
+            <value>
+                <fullName>活動</fullName>
+                <default>false</default>
+                <label>活動</label>
+            </value>
+            <value>
+                <fullName>契約</fullName>
+                <default>false</default>
+                <label>契約</label>
+            </value>
+            <value>
+                <fullName>権限セット</fullName>
+                <default>false</default>
+                <label>権限セット</label>
+            </value>
+            <value>
+                <fullName>行動</fullName>
+                <default>false</default>
+                <label>行動</label>
+            </value>
+            <value>
                 <fullName>取引先</fullName>
                 <default>false</default>
                 <label>取引先</label>
@@ -24,6 +114,11 @@
                 <fullName>商談</fullName>
                 <default>false</default>
                 <label>商談</label>
+            </value>
+            <value>
+                <fullName>商品</fullName>
+                <default>false</default>
+                <label>商品</label>
             </value>
         </valueSetDefinition>
     </valueSet>

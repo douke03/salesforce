@@ -21,9 +21,9 @@
                 <label>機能紹介</label>
             </value>
             <value>
-                <fullName>アップデート</fullName>
+                <fullName>バージョンアップ</fullName>
                 <default>false</default>
-                <label>アップデート</label>
+                <label>バージョンアップ</label>
             </value>
             <value>
                 <fullName>メンテナンス</fullName>
