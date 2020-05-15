@@ -1,15 +1,18 @@
 <template>
     <lightning-card title="掲示板">
-        <template if:false={bulletinBoards.data}>
+        <template if:false={bulletinBoards}>
             <div>
                 <lightning-spinner alternative-text="Loading" size="medium"></lightning-spinner>
             </div>
         </template>
-        <template if:true={bulletinBoards.data}>
-            <c-bulletin-board-table bulletin-boards={bulletinBoards.data} onopenmodal={openModalHandler}></c-bulletin-board-table>
+        <template if:true={isShowTable}>
+            <c-bulletin-board-table bulletin-boards={bulletinBoards} onopenmodal={openModalHandler}></c-bulletin-board-table>
         </template>
-        <template if:true={bulletinBoards.error}>
-            <p>{bulletinBoards.error.body.message}</p>
+        <template if:false={isShowTable}>
+            <p class="slds-align_absolute-center">現在、重要な掲示はありません。</p>
+        </template>
+        <template if:true={error}>
+            <p>{error.body.message}</p>
         </template>
         <!-- modal -->
         <template if:true={isOpenmodel}>
