@@ -19,17 +19,17 @@
     <enableKnowledgeTitleAutoComplete>true</enableKnowledgeTitleAutoComplete>
     <enableLightningKbAutoLoadRichTextField>true</enableLightningKbAutoLoadRichTextField>
     <enableLightningKnowledge>true</enableLightningKnowledge>
-    <showArticleSummariesCustomerPortal>false</showArticleSummariesCustomerPortal>
-    <showArticleSummariesInternalApp>false</showArticleSummariesInternalApp>
-    <showArticleSummariesPartnerPortal>false</showArticleSummariesPartnerPortal>
-    <showValidationStatusField>false</showValidationStatusField>
+    <showArticleSummariesCustomerPortal>true</showArticleSummariesCustomerPortal>
+    <showArticleSummariesInternalApp>true</showArticleSummariesInternalApp>
+    <showArticleSummariesPartnerPortal>true</showArticleSummariesPartnerPortal>
+    <showValidationStatusField>true</showValidationStatusField>
     <suggestedArticles>
         <caseFields>
             <field>
                 <name>Subject</name>
             </field>
         </caseFields>
-        <useSuggestedArticlesForCase>false</useSuggestedArticlesForCase>
+        <useSuggestedArticlesForCase>true</useSuggestedArticlesForCase>
         <workOrderFields>
             <field>
                 <name>Subject</name>

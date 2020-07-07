@@ -9,6 +9,7 @@
     <columns>PublicationOrder__c</columns>
     <columns>IsAllowInternalPublish__c</columns>
     <columns>IsAllowExternalPublish__c</columns>
+    <columns>Tag__c</columns>
     <filterScope>Everything</filterScope>
     <label>すべて選択</label>
 </ListView>
